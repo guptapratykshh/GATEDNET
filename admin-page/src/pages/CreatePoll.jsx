@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import { createPoll } from '../api/polls';
 import 'react-toastify/dist/ReactToastify.css';
 import './CreatePoll.css'; // Import custom styles
 
 const CreatePoll = () => {
-  const [question, setQuestion] = useState('');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
   const [options, setOptions] = useState(['', '']);
+  const [endDate, setEndDate] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleOptionChange = (index, value) => {
     const updatedOptions = [...options];
@@ -21,28 +25,72 @@ const CreatePoll = () => {
     setOptions([...options, '']);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const removeOption = (index) => {
+    if (options.length <= 2) {
+      toast.warning('Minimum 2 options required');
+      return;
+    }
+    const updatedOptions = [...options];
+    updatedOptions.splice(index, 1);
+    setOptions(updatedOptions);
+  };
 
-    if (question.trim() === '' || options.filter(opt => opt.trim() !== '').length < 2) {
-      toast.error('Poll question and at least 2 valid options are required');
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (title.trim() === '' || description.trim() === '' || !endDate) {
+      toast.error('Title, description and end date are required');
       return;
     }
 
-    const poll = {
-      question,
-      options,
-      votes: Array(options.length).fill(0),
+    const validOptions = options.filter(opt => opt.trim() !== '');
+    if (validOptions.length < 2) {
+      toast.error('At least 2 valid options are required');
+      return;
+    }
+
+    setLoading(true);
+
+    // Format poll data for API
+    const pollData = {
+      title,
+      description,
+      options: validOptions.map(text => ({ text })),
+      endDate: new Date(endDate).toISOString()
     };
 
-    const existingPolls = JSON.parse(localStorage.getItem('polls')) || [];
-    existingPolls.push(poll);
-    localStorage.setItem('polls', JSON.stringify(existingPolls));
-
-    toast.success('Poll created successfully!');
-    setQuestion('');
-    setOptions(['', '']);
+    try {
+      const response = await createPoll(pollData);
+      
+      if (response.error) {
+        toast.error(response.error);
+      } else {
+        // Also save to localStorage for backward compatibility
+        const simplePoll = {
+          question: title,
+          options: validOptions,
+          votes: Array(validOptions.length).fill(0)
+        };
+        const existingPolls = JSON.parse(localStorage.getItem('polls')) || [];
+        existingPolls.push(simplePoll);
+        localStorage.setItem('polls', JSON.stringify(existingPolls));
+        
+        toast.success('Poll created successfully!');
+        setTitle('');
+        setDescription('');
+        setOptions(['', '']);
+        setEndDate('');
+      }
+    } catch (error) {
+      toast.error('Error creating poll: ' + error.message);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  // Calculate min date for datepicker (today)
+  const today = new Date();
+  const minDate = today.toISOString().split('T')[0];
 
   return (
     <div className="create-poll-container">
@@ -50,31 +98,62 @@ const CreatePoll = () => {
       <form onSubmit={handleSubmit} className="poll-form">
         <input
           type="text"
-          placeholder="Enter your question..."
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
+          placeholder="Poll Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           className="poll-input question"
           required
         />
+        
+        <textarea
+          placeholder="Poll Description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          className="poll-input description"
+          required
+        />
 
-        {options.map((option, index) => (
-          <input
-            key={index}
-            type="text"
-            placeholder={`Option ${index + 1}`}
-            value={option}
-            onChange={(e) => handleOptionChange(index, e.target.value)}
-            className="poll-input option"
-            required
-          />
-        ))}
+        <label className="date-label">Poll End Date</label>
+        <input
+          type="date"
+          value={endDate}
+          min={minDate}
+          onChange={(e) => setEndDate(e.target.value)}
+          className="poll-input date"
+          required
+        />
+
+        <div className="options-container">
+          <h4>Poll Options</h4>
+          {options.map((option, index) => (
+            <div key={index} className="option-row">
+              <input
+                type="text"
+                placeholder={`Option ${index + 1}`}
+                value={option}
+                onChange={(e) => handleOptionChange(index, e.target.value)}
+                className="poll-input option"
+                required
+              />
+              {options.length > 2 && (
+                <button 
+                  type="button" 
+                  onClick={() => removeOption(index)}
+                  className="remove-option-btn"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
 
         <button type="button" onClick={addOption} className="add-option-btn">
           + Add Option
         </button>
 
-        <button type="submit" className="submit-btn">
-          Create Poll
+        <button type="submit" className="submit-btn" disabled={loading}>
+          {loading ? 'Creating...' : 'Create Poll'}
         </button>
       </form>
       <ToastContainer position="top-center" autoClose={2000} />

@@ -138,3 +138,65 @@
 .submit-btn {
   transition: all 0.3s ease;
 }
+
+.poll-input.description {
+  min-height: 100px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.date-label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.poll-input.date {
+  cursor: pointer;
+}
+
+.options-container {
+  margin: 20px 0;
+}
+
+.options-container h4 {
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.option-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.option-row .poll-input {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.remove-option-btn {
+  margin-left: 10px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  background: #ff5252;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.remove-option-btn:hover {
+  background-color: #ff1744;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}

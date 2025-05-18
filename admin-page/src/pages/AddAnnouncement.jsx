@@ -1,55 +1,91 @@
 // AnnouncementCard.js
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './AddAnnouncement.css'; // Optional custom styles
+import axios from 'axios';
+import './AddAnnouncement.css';
 
-const AnnouncementCard = () => {
-  const [announcement, setAnnouncement] = useState('');
+const AddAnnouncement = () => {
+  const [formData, setFormData] = useState({
+    title: '',
+    message: ''
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const navigate = useNavigate();
 
-  const handleAddAnnouncement = () => {
-    if (!announcement.trim()) {
-      toast.error('Please enter an announcement first!');
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleAddAnnouncement = async (e) => {
+    e.preventDefault();
+    
+    if (!formData.title.trim() || !formData.message.trim()) {
+      toast.error('Please enter both title and announcement message!');
       return;
     }
 
-    toast.success(`📢 Announcement added: ${announcement}`, {
-      position: 'top-right',
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      style: {
-        backgroundColor: '#e6ffed',
-        color: '#1a3e2b',
-        fontSize: '16px',
-        fontWeight: '500',
-        borderRadius: '8px',
-        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-      },
-    });
-
-    setAnnouncement('');
+    setIsLoading(true);
+    
+    try {
+      await axios.post('http://localhost:7000/api/announcements/add', {
+        title: formData.title,
+        message: formData.message,
+      });
+      setSuccessMessage('✅ Announcement added!');
+      setFormData({ title: '', message: '' });
+      setTimeout(() => {
+        setSuccessMessage('');
+        navigate('/announcements');
+      }, 3000);
+    } catch (error) {
+      console.error('Error adding announcement:', error);
+      toast.error('Failed to add announcement. Please try again.');
+      setSuccessMessage('❌ Failed to add announcement');
+      setTimeout(() => setSuccessMessage(''), 3000);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="announcement-wrapper">
       <h2>Add New Announcement</h2>
-      <textarea
-        className="announcement-textarea"
-        rows="3"
-        placeholder="Type your announcement..."
-        value={announcement}
-        onChange={(e) => setAnnouncement(e.target.value)}
-      />
-      <button className="announce-btn" onClick={handleAddAnnouncement}>
-        Add Announcement
-      </button>
+      {successMessage && <div className="success-toast">{successMessage}</div>}
+      <form onSubmit={handleAddAnnouncement}>
+        <input
+          className="announcement-input"
+          type="text"
+          name="title"
+          placeholder="Announcement Title"
+          value={formData.title}
+          onChange={handleChange}
+          required
+          disabled={isLoading}
+        />
+        <textarea
+          className="announcement-textarea"
+          name="message"
+          rows="3"
+          placeholder="Type your announcement message..."
+          value={formData.message}
+          onChange={handleChange}
+          required
+          disabled={isLoading}
+        />
+        <button 
+          className="announce-btn" 
+          type="submit"
+          disabled={isLoading}
+        >
+          {isLoading ? 'Adding Announcement...' : 'Add Announcement'}
+        </button>
+      </form>
       <ToastContainer />
     </div>
   );
 };
 
-export default AnnouncementCard;
+export default AddAnnouncement;

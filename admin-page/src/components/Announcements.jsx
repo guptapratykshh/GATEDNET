@@ -7,14 +7,14 @@ const Announcements = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/add-announcement'); // ✅ Navigates to the new page
+    navigate('/announcements'); // Navigate to view announcements
   };
 
   return (
     <div className="card" onClick={handleClick} style={{ cursor: 'pointer' }}>
       <h3>ANNOUNCEMENTS</h3>
       <img src={announcementImage} alt="Announcements" className="announcement-image" />
-      <p>🔔 Add a new announcement</p>
+      <p>🔔 View & manage announcements</p>
     </div>
   );
 };

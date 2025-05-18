@@ -66,6 +66,13 @@ button[type="submit"]:hover {
   transform: translateY(-2px);
 }
 
+button[type="submit"]:disabled {
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 .success-toast {
   background: #d4edda;
   color: #155724;
@@ -74,6 +81,18 @@ button[type="submit"]:hover {
   border-radius: 10px;
   text-align: center;
   animation: fadeIn 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.error-toast {
+  background: #f8d7da;
+  color: #842029;
+  padding: 14px;
+  border: 1px solid #f5c2c7;
+  border-radius: 10px;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+  margin-bottom: 20px;
 }
 
 @keyframes fadeIn {
