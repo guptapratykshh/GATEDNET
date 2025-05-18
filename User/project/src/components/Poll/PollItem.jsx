@@ -2,14 +2,7 @@ import React from 'react';
 import Card from '../UI/Card';
 import ProgressCircle from '../UI/ProgressCircle';
 
-interface PollItemProps {
-  id: string;
-  title: string;
-  progress: number;
-  onClick: (id: string) => void;
-}
-
-const PollItem: React.FC<PollItemProps> = ({ id, title, progress, onClick }) => {
+const PollItem = ({ id, title, progress, onClick }) => {
   return (
     <div className="mb-6 flex items-center">
       <div className="mr-4">

@@ -1,23 +1,15 @@
 import React from 'react';
 
-interface ButtonProps {
-  children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline' | 'text';
-  size?: 'sm' | 'md' | 'lg';
-  fullWidth?: boolean;
-  onClick?: () => void;
-  disabled?: boolean;
-  type?: 'button' | 'submit' | 'reset';
-}
-
-const Button: React.FC<ButtonProps> = ({
+const Button = ({
   children,
   variant = 'primary',
   size = 'md',
   fullWidth = false,
-  onClick,
   disabled = false,
+  className = '',
+  onClick,
   type = 'button',
+  ...rest
 }) => {
   const baseClasses = 'font-medium rounded transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2';
   
@@ -40,9 +32,11 @@ const Button: React.FC<ButtonProps> = ({
   return (
     <button
       type={type}
-      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${widthClass} ${disabledClass}`}
+      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${widthClass} ${disabledClass} ${className}`}
       onClick={onClick}
       disabled={disabled}
+      aria-disabled={disabled}
+      {...rest}
     >
       {children}
     </button>

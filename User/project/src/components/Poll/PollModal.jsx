@@ -13,7 +13,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Modal from '../UI/Modal';
 import Button from '../UI/Button';
 import useStore from '../../store/useStore';
-import { Poll } from '../../types';
 
 ChartJS.register(
   CategoryScale,
@@ -24,15 +23,10 @@ ChartJS.register(
   Legend
 );
 
-interface PollModalProps {
-  pollId: string | null;
-  onClose: () => void;
-}
-
-const PollModal: React.FC<PollModalProps> = ({ pollId, onClose }) => {
+const PollModal = ({ pollId, onClose }) => {
   const { activePolls, castVote } = useStore();
-  const [selectedPoll, setSelectedPoll] = useState<Poll | null>(null);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [selectedPoll, setSelectedPoll] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(null);
   
   useEffect(() => {
     if (pollId) {
@@ -87,7 +81,7 @@ const PollModal: React.FC<PollModalProps> = ({ pollId, onClose }) => {
     responsive: true,
     plugins: {
       legend: {
-        position: 'top' as const,
+        position: 'top',
       },
       title: {
         display: false,

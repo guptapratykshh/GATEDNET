@@ -1,13 +1,6 @@
 import React from 'react';
 
-interface ProgressCircleProps {
-  progress: number; // 0 to 100
-  size?: number;
-  strokeWidth?: number;
-  color?: string;
-}
-
-const ProgressCircle: React.FC<ProgressCircleProps> = ({
+const ProgressCircle = ({
   progress,
   size = 80,
   strokeWidth = 8,

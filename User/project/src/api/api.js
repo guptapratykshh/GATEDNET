@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { Poll, MaintenanceUpdate, Notification, Amenity, AmenityBooking, Announcement } from '../types';
 
 // In a real application, this would be set via environment variables
 const API_URL = 'https://api.example.com';
@@ -22,7 +21,7 @@ api.interceptors.request.use((config) => {
 });
 
 // Auth API
-export const login = async (email: string, password: string) => {
+export const login = async (email, password) => {
   // For demo purposes only
   // In a real app, this would call the actual backend API
   if (email === 'demo@example.com' && password === 'password') {
@@ -49,7 +48,7 @@ export const logout = () => {
 };
 
 // Polls API
-export const getActivePolls = async (): Promise<Poll[]> => {
+export const getActivePolls = async () => {
   // Mocked response for demo
   return [
     {
@@ -80,18 +79,18 @@ export const getActivePolls = async (): Promise<Poll[]> => {
   ];
 };
 
-export const getPollById = async (id: string): Promise<Poll | null> => {
+export const getPollById = async (id) => {
   const polls = await getActivePolls();
   return polls.find(poll => poll.id === id) || null;
 };
 
-export const castVote = async (pollId: string, optionId: string): Promise<void> => {
+export const castVote = async (pollId, optionId) => {
   // In a real app, this would make an API call to the backend
   console.log(`Vote cast for poll ${pollId}, option ${optionId}`);
 };
 
 // Maintenance API
-export const getMaintenanceUpdates = async (): Promise<MaintenanceUpdate[]> => {
+export const getMaintenanceUpdates = async () => {
   // Mocked response for demo
   return [
     {
@@ -114,7 +113,7 @@ export const getMaintenanceUpdates = async (): Promise<MaintenanceUpdate[]> => {
 };
 
 // Notifications API
-export const getNotifications = async (): Promise<Notification[]> => {
+export const getNotifications = async () => {
   // Mocked response for demo
   return [
     {
@@ -142,7 +141,7 @@ export const getNotifications = async (): Promise<Notification[]> => {
 };
 
 // Amenities API
-export const getAmenities = async (): Promise<Amenity[]> => {
+export const getAmenities = async () => {
   // Mocked response for demo
   return [
     { id: '1', name: 'clubhouse', displayName: 'Clubhouse' },
@@ -153,7 +152,7 @@ export const getAmenities = async (): Promise<Amenity[]> => {
   ];
 };
 
-export const getAmenityBookings = async (): Promise<AmenityBooking[]> => {
+export const getAmenityBookings = async () => {
   // Mocked response for demo
   return [
     {
@@ -168,22 +167,14 @@ export const getAmenityBookings = async (): Promise<AmenityBooking[]> => {
   ];
 };
 
-export const checkAmenityAvailability = async (
-  amenityId: string,
-  date: string
-): Promise<boolean> => {
+export const checkAmenityAvailability = async (amenityId, date) => {
   // In a real app, this would check with the backend
   // For demo, return true for most dates except a few
   const unavailableDates = ['2025-05-01', '2025-05-15', '2025-05-20'];
   return !unavailableDates.includes(date);
 };
 
-export const bookAmenity = async (
-  amenityId: string,
-  date: string,
-  startTime: string,
-  endTime: string
-): Promise<AmenityBooking> => {
+export const bookAmenity = async (amenityId, date, startTime, endTime) => {
   // Mocked response for demo
   return {
     id: Date.now().toString(),
@@ -197,7 +188,7 @@ export const bookAmenity = async (
 };
 
 // Announcements API
-export const getAnnouncements = async (): Promise<Announcement[]> => {
+export const getAnnouncements = async () => {
   // Mocked response for demo
   return [];
 };

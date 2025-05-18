@@ -2,11 +2,7 @@ import React, { useEffect } from 'react';
 import Card from '../UI/Card';
 import useStore from '../../store/useStore';
 
-interface BookedAmenitiesProps {
-  onBookAmenity: () => void;
-}
-
-const BookedAmenities: React.FC<BookedAmenitiesProps> = ({ onBookAmenity }) => {
+const BookedAmenities = ({ onBookAmenity }) => {
   const { amenityBookings, fetchAmenityBookings, isLoading } = useStore();
   
   useEffect(() => {
@@ -14,8 +10,8 @@ const BookedAmenities: React.FC<BookedAmenitiesProps> = ({ onBookAmenity }) => {
   }, [fetchAmenityBookings]);
   
   // Get amenity name by ID (in a real app, you would have a more robust data structure)
-  const getAmenityName = (amenityId: string): string => {
-    const amenityNames: Record<string, string> = {
+  const getAmenityName = (amenityId) => {
+    const amenityNames = {
       '1': 'Clubhouse',
       '2': 'Swimming Pool',
       '3': 'Amphitheatre',

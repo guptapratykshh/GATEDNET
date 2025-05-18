@@ -3,12 +3,12 @@ import { Shield } from 'lucide-react';
 import Button from '../components/UI/Button';
 import useStore from '../store/useStore';
 
-const Login: React.FC = () => {
+const Login = () => {
   const [email, setEmail] = useState('demo@example.com');
   const [password, setPassword] = useState('password');
   const { login, isLoading, error } = useStore();
   
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     await login(email, password);
   };
