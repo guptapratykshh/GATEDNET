@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Card from '../UI/Card';
 import useStore from '../../store/useStore';
 
-const Notifications: React.FC = () => {
+const Notifications = () => {
   const { notifications, fetchNotifications, isLoading } = useStore();
   
   useEffect(() => {

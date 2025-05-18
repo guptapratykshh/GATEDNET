@@ -3,20 +3,15 @@ import PollItem from '../Poll/PollItem';
 import Card from '../UI/Card';
 import useStore from '../../store/useStore';
 
-interface ActivePollsProps {
-  onViewPoll: (pollId: string) => void;
-}
-
-const ActivePolls: React.FC<ActivePollsProps> = ({ onViewPoll }) => {
+const ActivePolls = ({ onViewPoll }) => {
   const { activePolls, fetchActivePolls, isLoading } = useStore();
   
   useEffect(() => {
     fetchActivePolls();
   }, [fetchActivePolls]);
   
-  const calculateProgress = (poll: typeof activePolls[0]): number => {
+  const calculateProgress = (poll) => {
     const totalVotes = poll.options.reduce((sum, option) => sum + option.votes, 0);
-    // This is just a simple way to show progress, you can use a different metric
     return Math.min(100, (totalVotes / 300) * 100);
   };
   

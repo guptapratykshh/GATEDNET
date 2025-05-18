@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import Modal from '../UI/Modal';
 import ProfileDropdown from '../Profile/ProfileDropdown';
 import useStore from '../../store/useStore';
 
-interface LayoutProps {
-  children: React.ReactNode;
-}
-
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const Layout = ({ children }) => {
   const [activeItem, setActiveItem] = useState('voting');
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const { isAuthenticated, logout } = useStore();

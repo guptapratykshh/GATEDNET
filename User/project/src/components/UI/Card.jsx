@@ -1,13 +1,6 @@
 import React from 'react';
 
-interface CardProps {
-  title?: string;
-  children: React.ReactNode;
-  footer?: React.ReactNode;
-  onClick?: () => void;
-}
-
-const Card: React.FC<CardProps> = ({ title, children, footer, onClick }) => {
+const Card = ({ title, children, footer, onClick }) => {
   return (
     <div 
       className={`bg-navy-900 rounded-lg overflow-hidden shadow-md mb-6 text-white ${onClick ? 'cursor-pointer hover:shadow-lg transition-shadow' : ''}`}
