@@ -91,9 +91,10 @@ npm start
 ## Project Structure
 ```
 gatednet/
-├── frontend/          # React frontend
-├── backend/           # Node.js backend
-├── docs/             # Documentation
+├── frontend/ 
+├── backend/   
+├── User/
+├── User backend
 └── README.md
 ```
 
