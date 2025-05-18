@@ -2,15 +2,11 @@ import React from 'react';
 import { LogOut, User, Settings } from 'lucide-react';
 import useStore from '../../store/useStore';
 
-interface ProfileDropdownProps {
-  onLogout: () => void;
-}
-
-const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ onLogout }) => {
+const ProfileDropdown = ({ onLogout }) => {
   const { user } = useStore();
-  
+
   if (!user) return null;
-  
+
   return (
     <div className="absolute top-16 right-4 z-10 bg-white shadow-lg rounded-lg overflow-hidden w-64">
       <div className="p-4 bg-blue-600 text-white">
@@ -24,7 +20,7 @@ const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ onLogout }) => {
           </div>
         </div>
       </div>
-      
+
       <div className="p-2">
         <div className="px-3 py-2 hover:bg-gray-100 rounded cursor-pointer flex items-center">
           <Settings size={18} className="mr-2 text-gray-600" />

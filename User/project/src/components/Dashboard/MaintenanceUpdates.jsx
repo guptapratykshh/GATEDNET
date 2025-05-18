@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import Card from '../UI/Card';
 import useStore from '../../store/useStore';
 
-const MaintenanceUpdates: React.FC = () => {
+const MaintenanceUpdates = () => {
   const { maintenanceUpdates, fetchMaintenanceUpdates, isLoading } = useStore();
   
   useEffect(() => {
     fetchMaintenanceUpdates();
   }, [fetchMaintenanceUpdates]);
   
-  const getStatusBadge = (status: string) => {
+  const getStatusBadge = (status) => {
     switch (status) {
       case 'open':
         return (

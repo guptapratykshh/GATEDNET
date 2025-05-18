@@ -3,7 +3,7 @@ import { Bell } from 'lucide-react';
 import Card from '../UI/Card';
 import useStore from '../../store/useStore';
 
-const Announcements: React.FC = () => {
+const Announcements = () => {
   const { announcements, fetchAnnouncements, isLoading } = useStore();
   
   useEffect(() => {

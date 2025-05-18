@@ -2,11 +2,7 @@ import React from 'react';
 import { Shield, User } from 'lucide-react';
 import useStore from '../../store/useStore';
 
-interface HeaderProps {
-  onProfileClick: () => void;
-}
-
-const Header: React.FC<HeaderProps> = ({ onProfileClick }) => {
+const Header = ({ onProfileClick }) => {
   const { user } = useStore();
   
   return (

@@ -1,14 +1,7 @@
 import React from 'react';
 import { BarChart3, PenTool as Tool, Calendar, BookOpen, Settings } from 'lucide-react';
 
-interface SidebarItemProps {
-  icon: React.ReactNode;
-  label: string;
-  isActive?: boolean;
-  onClick: () => void;
-}
-
-const SidebarItem: React.FC<SidebarItemProps> = ({ icon, label, isActive = false, onClick }) => {
+const SidebarItem = ({ icon, label, isActive = false, onClick }) => {
   return (
     <div 
       className={`flex items-center p-4 cursor-pointer transition duration-200 
@@ -21,12 +14,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ icon, label, isActive = false
   );
 };
 
-interface SidebarProps {
-  activeItem: string;
-  onItemClick: (item: string) => void;
-}
-
-const Sidebar: React.FC<SidebarProps> = ({ activeItem, onItemClick }) => {
+const Sidebar = ({ activeItem, onItemClick }) => {
   const items = [
     { id: 'voting', label: 'Voting & Polling', icon: <BarChart3 size={24} /> },
     { id: 'maintenance', label: 'Maintenance Requests', icon: <Tool size={24} /> },
