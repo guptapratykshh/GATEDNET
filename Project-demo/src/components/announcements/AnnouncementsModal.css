@@ -1,0 +1,22 @@
+.no-announcements {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #ccc;
+}
+
+.no-announcements h3 {
+  margin: 0 0 0.5rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.no-announcements p {
+  color: #888;
+  margin: 0;
+  line-height: 1.5;
+}

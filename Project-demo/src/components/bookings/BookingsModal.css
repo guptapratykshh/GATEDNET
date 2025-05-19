@@ -1,0 +1,148 @@
+.bookings-filter {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-btn {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  background-color: #f9f9f9;
+}
+
+.filter-btn.active {
+  background-color: #4A80F0;
+  color: white;
+  border-color: #4A80F0;
+}
+
+.bookings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 1.5rem;
+}
+
+.booking-card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.25rem;
+  border: 1px solid #eaeaea;
+}
+
+.booking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.booking-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.booking-status {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.booking-status.confirmed {
+  background-color: #e8f5e9;
+  color: #43a047;
+}
+
+.booking-status.pending {
+  background-color: #fff8e1;
+  color: #ffa000;
+}
+
+.booking-status.cancelled {
+  background-color: #ffebee;
+  color: #e53935;
+}
+
+.booking-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.booking-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.booking-date, .booking-time {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.info-label {
+  font-weight: 500;
+  margin-right: 0.5rem;
+  color: #555;
+}
+
+.cancel-booking-btn {
+  background-color: #ffebee;
+  color: #e53935;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.cancel-booking-btn:hover {
+  background-color: #ffe0e3;
+}
+
+.new-booking-section {
+  display: flex;
+  justify-content: center;
+}
+
+.new-booking-btn {
+  background-color: #4A80F0;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.new-booking-btn:hover {
+  background-color: #3a6ad1;
+}
+
+.no-bookings {
+  text-align: center;
+  padding: 2rem;
+  color: #888;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  color: #666;
+}

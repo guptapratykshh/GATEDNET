@@ -1,0 +1,299 @@
+/* Base Styles */
+:root {
+  --primary-color: #4A80F0;
+  --primary-light: #DCEAFF;
+  --dark-blue: #101C3D;
+  --text-primary: #FFFFFF;
+  --text-secondary: #666666;
+  --text-light: #888888;
+  --card-bg: #0A1B3F;
+  --background: #FFFFFF;
+  --border-color: #EAEAEA;
+  --hover-bg: #152447;
+  --success-color: #43A047;
+  --warning-color: #FFA000;
+  --error-color: #E53935;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--background);
+  line-height: 1.5;
+}
+
+/* App Layout */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  background-color: var(--dark-blue);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+}
+
+.shield-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.user-menu {
+  position: relative;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 180px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content button {
+  color: var(--dark-blue);
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  background: none;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdown-content button:hover {
+  background-color: var(--primary-light);
+}
+
+.app-content {
+  display: flex;
+  flex: 1;
+  background-color: var(--background);
+}
+
+.sidebar {
+  width: 250px;
+  background-color: var(--dark-blue);
+  padding: 1.5rem 0;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-item {
+  background: none;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  color: var(--primary-color);
+  font-size: 1rem;
+}
+
+.nav-item:hover {
+  background-color: var(--hover-bg);
+}
+
+.nav-item.active {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.dashboard-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  color: var(--text-primary);
+}
+
+.dashboard-card h2 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.card-action {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  padding: 0;
+  cursor: pointer;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+  transition: opacity 0.2s;
+}
+
+.card-action:hover {
+  opacity: 0.8;
+}
+
+/* Active Votes */
+.votes-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vote-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.vote-progress {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--primary-color);
+  border-radius: 50%;
+}
+
+/* Maintenance Updates */
+.maintenance-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.maintenance-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.status.open {
+  background-color: #FFEB3B;
+  color: var(--dark-blue);
+}
+
+.status.resolved {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Notifications */
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.notification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.notification-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  margin-top: 0.5rem;
+}
+
+/* Bookings */
+.booking-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+/* Announcements */
+.announcements-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.bell-icon {
+  font-size: 2rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app-content {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}

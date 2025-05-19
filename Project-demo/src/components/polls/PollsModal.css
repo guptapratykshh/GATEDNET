@@ -1,0 +1,155 @@
+.polls-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.poll-card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  border: 1px solid #eaeaea;
+}
+
+.poll-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  background-color: #f0f7ff;
+}
+
+.poll-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.poll-card p {
+  margin: 0 0 1rem;
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.poll-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.poll-detail {
+  animation: fadeIn 0.3s ease;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #4A80F0;
+  padding: 0;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+.poll-detail h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  color: #222;
+}
+
+.poll-description {
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+.poll-chart {
+  margin-bottom: 1.5rem;
+}
+
+.chart-bar-container {
+  margin-bottom: 1rem;
+}
+
+.chart-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+}
+
+.chart-bar-bg {
+  height: 12px;
+  background-color: #eaeaea;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.chart-bar-fill {
+  height: 100%;
+  background-color: #4A80F0;
+  border-radius: 6px;
+  transition: width 0.5s ease-out;
+}
+
+.poll-deadline {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+.poll-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.vote-btn {
+  background-color: #f0f7ff;
+  border: 1px solid #4A80F0;
+  color: #4A80F0;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  flex-grow: 1;
+  flex-basis: calc(50% - 0.75rem);
+  text-align: center;
+}
+
+.vote-btn:hover {
+  background-color: #e0edff;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  color: #666;
+}
+
+.no-polls {
+  text-align: center;
+  color: #666;
+  padding: 2rem 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .vote-btn {
+    flex-basis: 100%;
+  }
+}

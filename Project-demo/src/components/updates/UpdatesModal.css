@@ -1,0 +1,80 @@
+.updates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.update-card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.25rem;
+  border: 1px solid #eaeaea;
+  transition: transform 0.15s;
+}
+
+.update-card:hover {
+  transform: translateY(-2px);
+}
+
+.update-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.update-category {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.update-category.amenities {
+  background-color: #e0f7fa;
+  color: #0097a7;
+}
+
+.update-category.maintenance {
+  background-color: #fff8e1;
+  color: #ffa000;
+}
+
+.update-category.meetings {
+  background-color: #e8f5e9;
+  color: #43a047;
+}
+
+.update-date {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.update-title {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.update-description {
+  margin: 0;
+  color: #666;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.no-updates {
+  text-align: center;
+  padding: 2rem;
+  color: #888;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  color: #666;
+}
