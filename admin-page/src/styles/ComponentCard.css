@@ -40,14 +40,15 @@ body {
 
 /* Card Styling */
 .card {
-  background: #0F172A;
-  color: #e0e0e0;
+  background: #0D1726;
+  color: #ffffff;
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
   text-align: center;
   font-family: 'Segoe UI', sans-serif;
   transition: transform 0.3s ease;
+  border: 1px solid rgba(59, 130, 246, 0.15);
 }
 
 .card:hover {
@@ -57,6 +58,8 @@ body {
 .card h3 {
   margin-bottom: 12px;
   font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
 }
 
 .society-members-image {
@@ -69,7 +72,7 @@ body {
 /* Text inside card */
 .card p {
   margin: 6px 0;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.1rem;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -77,6 +80,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 6px;
+  color: #60a5fa;
+  text-decoration: none;
 }
 
 .card p:first-of-type {
@@ -95,33 +100,113 @@ body {
   color: #3b82f6;
 }
 
+/* Button Containers */
+.action-container,
+.button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+  width: 100%;
+}
+
 /* Action Links */
 .action {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.1rem;
   cursor: pointer;
-  margin: 6px 0;
-  transition: color 0.3s ease;
+  margin: 0 auto;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
+  background-color: #1E3A8A;
+  color: #93C5FD;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  width: 160px;
+  text-align: center;
+  box-sizing: border-box;
+  text-transform: uppercase;
+}
+
+.action:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
+  background-color: #172C6A;
+}
+
+.action:active {
+  transform: translateY(-2px) scale(0.98);
+  transition: all 0.2s ease;
 }
 
 .add-member {
-  color: #34d399;
+  /* Removed specific background to inherit from .action */
 }
 
 .add-member:hover {
-  color: #10b981;
+  /* Removed specific background hover to inherit from .action:hover */
 }
 
 .update-member {
-  color: #60a5fa;
+  /* Removed specific background to inherit from .action */
 }
 
 .update-member:hover {
-  color: #3b82f6;
+  /* Removed specific background hover to inherit from .action:hover */
+}
+
+/* Add glow effect to action buttons */
+.action::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.action:hover::after {
+  opacity: 1;
+}
+
+/* Style for buttons directly inside cards */
+.card button {
+  background-color: #1E3A8A;
+  color: #93C5FD;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.card button:hover {
+  background-color: #172C6A;
+  color: #93C5FD;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
+}
+
+.card button:active {
+  transform: translateY(-2px) scale(0.98);
+  transition: all 0.2s ease;
 }
 
 /* Active Votes */
@@ -130,15 +215,22 @@ body {
   flex-wrap: wrap;
   gap: 0.75rem;
   justify-content: center;
+  align-items: center;
+  background: #0D1726;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  min-height: 120px;
 }
 
 .vote-button {
-  background-color: #3b82f6;
-  color: white;
+  background-color: #1E3A8A;
+  color: #93C5FD;
   border: none;
   border-radius: 6px;
   padding: 0.75rem 1rem;
   font-size: 1.1rem;
+  font-weight: 700;
   cursor: pointer;
   flex: 0 0 auto;
   min-width: 120px;
@@ -147,6 +239,23 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+  text-transform: uppercase;
+}
+
+.vote-button:hover {
+  background-color: #172C6A;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
+}
+
+.vote-button:active {
+  transform: translateY(-2px) scale(0.98);
+  transition: all 0.2s ease;
 }
 
 .vote-button.create::before {
@@ -191,31 +300,92 @@ body {
   background-color: #10b981;
 }
 
+/* Button Wrapper */
 .maintenance-actions {
   display: flex;
-  gap: 0.4rem;
+  gap: 10px;
+  margin-top: 15px;
+  animation: fadeSlide 0.8s ease-out both;
+  align-items: center;
+  justify-content: center;
 }
 
-.action-button {
-  background-color: #3b82f6;
+/* Buttons */
+.maintenance-btn {
   color: white;
   border: none;
-  border-radius: 4px;
-  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
+  animation: fadeSlide 0.9s ease-out both;
 }
 
-.action-button::before {
-  content: "+";
+.maintenance-btn:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.2);
+}
+
+.maintenance-btn:active {
+  transform: translateY(-2px) scale(0.98);
+  transition: all 0.2s ease;
+}
+
+.add-btn,
+.update-btn,
+.view-btn {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-shrink: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
+}
+
+.add-btn:hover,
+.update-btn:hover,
+.view-btn:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.2);
+}
+
+.add-btn:active,
+.update-btn:active,
+.view-btn:active {
+  transform: translateY(-2px) scale(0.98);
+  transition: all 0.2s ease;
+}
+
+/* Ensure icons have consistent size and spacing */
+.add-btn svg,
+.update-btn svg,
+.view-btn svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
 }
 
 /* Bottom Section Cards */
 .bottom-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, min-max(220px, 1fr));
   gap: 1rem;
   grid-column: 1 / -1;
 }
@@ -258,10 +428,12 @@ body {
   color: #60a5fa;
   font-weight: 500;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .card-link:hover {
-  text-decoration: underline;
+  color: #3b82f6;
+  text-decoration: none;
 }
 
 /* Responsive Adjustments */
@@ -285,14 +457,15 @@ body {
   }
 }
 .maintenance-dashboard {
-  background: #0F172A;
-  color: #e0e0e0;
-  padding: 24px;
+  background: #1E3A8A;
+  color: #ffffff;
+  padding: 20px;
   border-radius: 16px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
   text-align: center;
-  animation: fadeSlide 0.6s ease-out both;
+  font-family: 'Segoe UI', sans-serif;
   transition: transform 0.3s ease;
+  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .maintenance-dashboard:hover {
@@ -300,59 +473,9 @@ body {
 }
 
 .maintenance-title {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  color: #60a5fa;
-  font-weight: 600;
-}
-
-.maintenance-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-}
-
-.maintenance-btn {
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 0.75rem 1.25rem;
-  font-size: 1.1rem;
-  cursor: pointer;
-  width: 200px;
-  font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.maintenance-btn:hover {
-  background-color: #2563eb;
-  transform: translateY(-3px);
-}
-
-.add-btn {
-  background-color: #10b981;
-}
-
-.add-btn:hover {
-  background-color: #059669;
-}
-
-.update-btn {
-  background-color: #f59e0b;
-}
-
-.update-btn:hover {
-  background-color: #d97706;
-}
-
-.view-btn {
-  background-color: #60a5fa;
-}
-
-.view-btn:hover {
-  background-color: #3b82f6;
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+  color: #ffffff;
 }
 
 /* Animation Keyframes */
@@ -372,154 +495,83 @@ body {
   animation: fadeSlide 0.6s ease-out both;
 }
 
-/* Maintenance Dashboard Container */
-.maintenance-dashboard {
-  background: #0F172A;
-  color: #e0e0e0;
-  padding: 24px;
-  border-radius: 16px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  animation: fadeSlide 0.6s ease-out both;
-  transition: transform 0.3s ease;
+/* Add a subtle glow effect on hover */
+.card button::after,
+.vote-button::after,
+.maintenance-btn::after,
+.add-btn::after,
+.update-btn::after,
+.view-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
-.maintenance-dashboard:hover {
-  transform: scale(1.03);
+.card button:hover::after,
+.vote-button:hover::after,
+.maintenance-btn:hover::after,
+.add-btn:hover::after,
+.update-btn:hover::after,
+.view-btn:hover::after {
+  opacity: 1;
 }
 
-/* Maintenance Title */
-.maintenance-title {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  color: #60a5fa;
-  font-weight: 600;
-  animation: fadeSlide 0.7s ease-out both;
-}
-
-/* Button Wrapper */
-.maintenance-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  animation: fadeSlide 0.8s ease-out both;
-}
-
-/* Buttons */
-.maintenance-btn {
-  background-color: #3b82f6;
-  color: white;
+/* Poll Buttons */
+.poll-button {
+  background-color: #1E3A8A;
+  color: #93C5FD;
   border: none;
-  border-radius: 6px;
-  padding: 0.75rem 1.25rem;
-  font-size: 1.1rem;
-  cursor: pointer;
-  width: 200px;
-  font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  animation: fadeSlide 0.9s ease-out both;
-}
-
-.maintenance-btn:hover {
-  transform: translateY(-3px);
-}
-
-.add-btn {
-  background-color: #10b981;
-}
-
-.add-btn:hover {
-  background-color: #059669;
-}
-
-.update-btn {
-  background-color: #f59e0b;
-}
-
-.update-btn:hover {
-  background-color: #d97706;
-}
-
-.view-btn {
-  background-color: #60a5fa;
-}
-
-.view-btn:hover {
-  background-color: #3b82f6;
-}
-
-/* Maintenance List */
-.maintenance-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  font-size: 1rem;
-  padding: 0.5rem 0;
-}
-
-/* Each Item in the List */
-.maintenance-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.4rem 0.6rem;
   border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.05);
-  animation: fadeSlide 0.6s ease-out both;
-}
-
-/* Optional: staggered animation */
-.maintenance-item:nth-child(1) {
-  animation-delay: 0.2s;
-}
-.maintenance-item:nth-child(2) {
-  animation-delay: 0.3s;
-}
-.maintenance-item:nth-child(3) {
-  animation-delay: 0.4s;
-}
-.maintenance-item:nth-child(4) {
-  animation-delay: 0.5s;
-}
-/* ... add more as needed */
-
-/* Status Badges */
-.status-badge {
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-.status-badge.open {
-  background-color: #f59e0b;
-}
-
-.status-badge.resolved {
-  background-color: #10b981;
-}
-
-/* Task Action Buttons */
-.maintenance-actions {
-  display: flex;
-  gap: 0.4rem;
-}
-
-.action-button {
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 0.4rem 0.8rem;
+  padding: 10px 15px;
+  font-size: 1.1rem;
+  font-weight: 700;
   cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
+  width: 160px;
+  text-align: center;
+  box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-  animation: fadeSlide 0.6s ease-out both;
-  transition: background-color 0.3s ease;
+  justify-content: center;
+  gap: 5px;
+  text-transform: uppercase;
 }
 
-.action-button::before {
-  content: "+";
+.poll-button:hover {
+  background-color: #172C6A;
+  color: #93C5FD;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
+}
+
+.poll-button:active {
+  transform: translateY(-2px) scale(0.98);
+  transition: all 0.2s ease;
+}
+
+/* Add glow effect to poll buttons */
+.poll-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.poll-button:hover::after {
+  opacity: 1;
 }

@@ -17,4 +17,5 @@ const ActiveVotes = () => {
     </div>
   );
 };
+
 export default ActiveVotes;

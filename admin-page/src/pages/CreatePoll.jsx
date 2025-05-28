@@ -9,8 +9,6 @@ const CreatePoll = () => {
   const [options, setOptions] = useState(['', '']);
   const [endDate, setEndDate] = useState('');
   const [loading, setLoading] = useState(false);
-  const [allowMultipleSelections, setAllowMultipleSelections] = useState(false);
-  const [maxSelectionsAllowed, setMaxSelectionsAllowed] = useState(1);
 
   const handleOptionChange = (index, value) => {
     const updatedOptions = [...options];
@@ -50,22 +48,13 @@ const CreatePoll = () => {
       return;
     }
 
-    if (allowMultipleSelections && maxSelectionsAllowed > validOptions.length) {
-      toast.error('Maximum selections cannot exceed the number of options');
-      return;
-    }
-
     setLoading(true);
 
     // Format poll data for API
     const pollData = {
       question: title,
       options: validOptions,
-      endDate: new Date(endDate).toISOString(),
-      settings: {
-        allowMultipleSelections,
-        maxSelectionsAllowed: allowMultipleSelections ? maxSelectionsAllowed : 1
-      }
+      endDate: new Date(endDate).toISOString()
     };
 
     try {
@@ -79,10 +68,6 @@ const CreatePoll = () => {
           question: title,
           options: validOptions,
           votes: Array(validOptions.length).fill(0),
-          settings: {
-            allowMultipleSelections,
-            maxSelectionsAllowed: allowMultipleSelections ? maxSelectionsAllowed : 1
-          }
         };
         const existingPolls = JSON.parse(localStorage.getItem('polls')) || [];
         existingPolls.push(simplePoll);
@@ -92,8 +77,6 @@ const CreatePoll = () => {
         setTitle('');
         setOptions(['', '']);
         setEndDate('');
-        setAllowMultipleSelections(false);
-        setMaxSelectionsAllowed(1);
       }
     } catch (error) {
       toast.error('Error creating poll: ' + error.message);
@@ -157,41 +140,6 @@ const CreatePoll = () => {
         <button type="button" onClick={addOption} className="add-option-btn">
           + Add Option
         </button>
-
-        <div className="poll-settings">
-          <h4>Poll Settings</h4>
-          <div className="settings-row">
-            <div className="selection-type">
-              <p className="settings-label">How should users vote?</p>
-              <div className="radio-group">
-                <label className="radio-label">
-                  <input
-                    type="radio"
-                    name="selectionType"
-                    checked={!allowMultipleSelections}
-                    onChange={() => {
-                      setAllowMultipleSelections(false);
-                      setMaxSelectionsAllowed(1);
-                    }}
-                  />
-                  Vote for one option only
-                </label>
-                <label className="radio-label">
-                  <input
-                    type="radio"
-                    name="selectionType"
-                    checked={allowMultipleSelections}
-                    onChange={() => {
-                      setAllowMultipleSelections(true);
-                      setMaxSelectionsAllowed(options.length);
-                    }}
-                  />
-                  Vote for multiple options
-                </label>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <button type="submit" className="submit-btn" disabled={loading}>
           {loading ? 'Creating...' : 'Create Poll'}

@@ -48,21 +48,52 @@
 .btn {
   padding: 12px 24px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
+  background-color: #1E3A8A;
+  color: #93C5FD;
+  text-transform: uppercase;
 }
 
 .btn-primary {
-  background-color: #3498db;
-  color: #fff;
+  background-color: #1E3A8A;
+  color: #93C5FD;
+  text-transform: uppercase;
 }
 
 .btn-primary:hover {
-  background-color: #2980b9;
-  transform: translateY(-2px);
+  background-color: #172C6A;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
+  color: #93C5FD;
+}
+
+.btn:active {
+  transform: translateY(-2px) scale(0.98);
+  transition: all 0.2s ease;
+}
+
+/* Add glow effect to buttons */
+.btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.btn:hover::after {
+  opacity: 1;
 }
 
 /* Table Styling */
@@ -83,6 +114,7 @@
   padding: 14px 18px;
   border-bottom: 1px solid #ddd;
   text-align: left;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .maintenance-table th {
@@ -91,9 +123,16 @@
   color: #2c3e50;
 }
 
+.maintenance-table tr {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+}
+
 .maintenance-table tr:hover {
   background-color: #f0f8ff;
-  transition: background-color 0.3s ease;
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.1);
 }
 
 .maintenance-table select {
@@ -103,6 +142,22 @@
   border: 1px solid #ccc;
   background-color: #fff;
   color: #333;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  cursor: pointer;
+}
+
+.maintenance-table select:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+  border-color: #3498db;
+}
+
+.maintenance-table select:focus {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+  border-color: #3498db;
+  outline: none;
 }
 
 /* Task List Styling */
@@ -113,12 +168,37 @@
   border-radius: 12px;
   border-left: 6px solid #3498db;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
 }
 
 .task-list-item:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.15);
+}
+
+.task-list-item:active {
+  transform: translateY(-2px) scale(0.98);
+  transition: all 0.2s ease;
+}
+
+/* Add glow effect to task items */
+.task-list-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.task-list-item:hover::after {
+  opacity: 1;
 }
 
 .task-status {
@@ -164,4 +244,64 @@
   .maintenance-table td {
     padding: 10px 12px;
   }
+}
+
+/* Buttons */
+.maintenance-btn {
+  color: #93C5FD;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
+  animation: fadeSlide 0.9s ease-out both;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  background-color: #1E3A8A;
+  text-transform: uppercase;
+}
+
+.maintenance-btn:hover {
+  background-color: #172C6A;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
+  color: #93C5FD;
+}
+
+.add-btn,
+.update-btn,
+.view-btn {
+  background-color: #1E3A8A;
+  color: #93C5FD;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex-shrink: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.add-btn:hover,
+.update-btn:hover,
+.view-btn:hover {
+  background-color: #172C6A;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
+  color: #93C5FD;
 }
