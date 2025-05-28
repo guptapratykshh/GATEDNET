@@ -56,9 +56,14 @@ exports.getAllPolls = async (req, res) => {
     
     console.log('Filtering polls with filter:', filter);
 
+    // Use .lean() to get plain JavaScript objects, potentially faster and avoids hydration issues
     const polls = await Poll.find(filter)
+      .select('question options endDate isActive createdAt') // Explicitly select necessary fields, including options and votes
       .sort({ createdAt: -1 })
-      .populate('createdBy', 'name email'); // Populate createdBy field
+      .populate('createdBy', 'name email') // Populate createdBy field
+      .lean(); // Add .lean() here
+
+    console.log('Fetched polls in admin backend:', polls);
     res.json(polls);
   } catch (error) {
     console.error('Get all polls error:', error);

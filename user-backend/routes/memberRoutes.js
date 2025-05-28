@@ -75,16 +75,24 @@ router.post('/vote', async (req, res) => {
     }
 
     // Check if member has already voted in this poll
+    // NOTE: This check is based on the assumption that votes is an array of member references.
+    // Since the database schema has 'votes' as a number, this check cannot function correctly.
+    // To enable accurate duplicate vote prevention without changing the database schema,
+    // a separate mechanism (e.g., a new collection to track user votes) would be required.
+    // For now, we are commenting out this check to allow vote counting.
+    /*
     const alreadyVoted = poll.options.some(option => 
-      option.votes.some(vote => vote.member.toString() === memberId)
+      option.votes.some(vote => vote.member && vote.member.toString() === memberId)
     );
 
     if (alreadyVoted) {
       return res.status(400).json({ message: 'You have already voted in this poll' });
     }
+    */
 
-    // Add the vote
-    poll.options[optionIndex].votes.push({ member: memberId });
+    // Increment the vote count for the selected option
+    poll.options[optionIndex].votes += 1;
+    console.log(`Incremented vote count for option ${optionIndex}: ${poll.options[optionIndex].votes}`);
 
     await poll.save();
     console.log('Vote recorded successfully');

@@ -755,3 +755,33 @@
     display: none;
   }
 }
+
+.toggle-active-btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s var(--transition-bounce);
+  border: none;
+  cursor: pointer;
+  background: var(--primary-gradient);
+  color: white;
+  box-shadow: 0 4px 12px rgba(78, 124, 255, 0.2);
+}
+
+.toggle-active-btn:hover {
+  background: var(--hover-gradient);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(78, 124, 255, 0.3);
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #dc3545, #f86b7d);
+  color: white;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+}
+
+.delete-btn:hover {
+  background: linear-gradient(135deg, #c82333, #e74c3c);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(220, 53, 69, 0.3);
+}

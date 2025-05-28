@@ -38,5 +38,8 @@ app.get('/', (req, res) => {
 const pollRoutes = require('./routes/pollRoutes');
 app.use('/api/polls', pollRoutes);
 
+const amenityRoutes = require('./routes/amenityRoutes');
+app.use('/api/amenities', amenityRoutes);
+
 const PORT = process.env.PORT || 7000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

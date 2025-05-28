@@ -8,12 +8,13 @@ import {
   LinearScale,
   Tooltip,
   Legend,
+  Title
 } from 'chart.js';
 import { getAllPolls, updatePoll, deletePoll } from '../api/polls';
 import 'react-toastify/dist/ReactToastify.css';
 import './PollResults.css';
 
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend, Title);
 
 const PollResults = () => {
   const [polls, setPolls] = useState([]);
@@ -25,23 +26,27 @@ const PollResults = () => {
     setLoading(true);
     try {
       const response = await getAllPolls(statusFilter);
+      console.log('API Response:', response); // Debug log
       if (response.error) {
         setError(response.error);
-        // Fallback to localStorage if API fails
-        const storedPolls = JSON.parse(localStorage.getItem('polls')) || [];
-        // Assuming localStorage polls have a 'published' field for active status
-        setPolls(storedPolls.map(poll => ({ ...poll, isActive: poll.published }))); 
+        setPolls([]);
       } else {
-        // Map API response polls to ensure 'isActive' field exists
-        setPolls(response.map(poll => ({ ...poll, isActive: poll.isActive })));
+        const formattedPolls = response.map(poll => ({
+          ...poll,
+          isActive: poll.isActive,
+          options: poll.options ? poll.options.map(option => ({
+            ...option,
+            votes: typeof option.votes === 'number' ? option.votes : 0 // Handle votes as number
+          })) : []
+        }));
+        console.log('Formatted polls:', formattedPolls); // Debug log
+        setPolls(formattedPolls);
         setError(null);
       }
     } catch (err) {
+      console.error('Fetch error:', err); // Debug log
       setError('Failed to fetch polls: ' + err.message);
-      // Fallback to localStorage
-      const storedPolls = JSON.parse(localStorage.getItem('polls')) || [];
-      // Assuming localStorage polls have a 'published' field for active status
-      setPolls(storedPolls.map(poll => ({ ...poll, isActive: poll.published })));
+      setPolls([]);
     } finally {
       setLoading(false);
     }
@@ -62,8 +67,6 @@ const PollResults = () => {
         toast.success(`Poll ${updatedPoll.isActive ? 'activated' : 'deactivated'} successfully`);
         // Update the state with the modified poll
         setPolls(polls.map(p => p._id === poll._id ? updatedPoll : p));
-        // Update localStorage for consistency (if needed)
-        // Note: localStorage fallback might need adjustment to handle 'isActive'
       }
     } catch (err) {
       toast.error('Error updating poll status: ' + err.message);
@@ -79,28 +82,11 @@ const PollResults = () => {
         } else {
           toast.success('Poll deleted successfully');
           setPolls(polls.filter(poll => poll._id !== id));
-          // Update localStorage for consistency (if needed)
-          // Note: localStorage fallback might need adjustment to handle deleted items
         }
       } catch (err) {
         toast.error('Error deleting poll: ' + err.message);
       }
     }
-  };
-
-  // Old fallback function for localStorage compatibility (can be removed or updated)
-  const togglePublish = (index) => {
-    const updatedPolls = [...polls];
-    const poll = updatedPolls[index];
-    poll.published = !poll.published;
-    // Update isActive for consistency with new state structure
-    poll.isActive = poll.published;
-    localStorage.setItem('polls', JSON.stringify(updatedPolls));
-    setPolls(updatedPolls);
-
-    toast.success(
-      `Poll "${poll.title || poll.question}" ${poll.published ? 'published' : 'unpublished'} successfully!`
-    );
   };
 
   if (loading) {
@@ -132,75 +118,97 @@ const PollResults = () => {
       {polls.length === 0 ? (
         <p className="no-polls">No polls found.</p>
       ) : (
-        polls.map((poll, index) => {
-          // Handle both API response format and localStorage format
-          const isApiFormat = poll._id && poll.options && Array.isArray(poll.options) && typeof poll.isActive !== 'undefined'; // Improved check
+        polls.map((poll) => {
+          console.log('Rendering poll:', poll); // Debug log
+          const options = poll.options.map(opt => opt.text);
+          const votes = poll.options.map(opt => opt.votes || 0); // Get votes as numbers
           
-          const options = isApiFormat 
-            ? poll.options.map(opt => opt.text) 
-            : (poll.options || []).map(opt => opt.text); // Ensure text is accessed correctly
+          console.log('Chart data:', { options, votes }); // Debug log
           
-          const votes = isApiFormat 
-            ? poll.options.map(opt => opt.votes.length) // Count votes from the array
-            : (poll.votes || []); // Assuming localStorage stores total votes per option
-          
-          const total = votes.reduce((a, b) => a + b, 0) || 1;
+          const total = votes.reduce((a, b) => a + b, 0);
           const percentages = votes.map(v => ((v / total) * 100).toFixed(1));
 
           const chartData = {
             labels: options,
             datasets: [
               {
-                label: '% of Votes',
-                data: percentages,
-                backgroundColor: ['#4CAF50', '#F44336', '#2196F3', '#FF9800', '#9C27B0', '#607D8B'],
+                label: 'Votes',
+                data: votes,
+                backgroundColor: ['#4e7cff', '#6e8eff', '#3b5fe0', '#1E3A8A', '#5e7eff', '#172C6A'],
                 borderWidth: 1,
+                borderColor: 'rgba(0, 0, 0, 0.1)',
+                borderRadius: 5,
               },
             ],
           };
 
+          console.log('Final chart data:', chartData); // Debug log
+
           const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                display: true,
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'Poll Results',
+                font: {
+                  size: 16
+                }
+              },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    const value = context.raw;
+                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                    const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
+                    return `${value} votes (${percentage}%)`;
+                  }
+                }
+              }
+            },
             scales: {
               y: {
                 beginAtZero: true,
-                max: 100,
                 ticks: {
-                  callback: (value) => `${value}%`,
-                },
-              },
-            },
+                  stepSize: 1
+                }
+              }
+            }
           };
 
           return (
-            <div className={`poll-card ${poll.isActive === false ? 'closed' : ''}`} key={poll._id || index}> {/* Use isActive for class */}              <div className="poll-header">
-                <h4 className="poll-question">{poll.question || poll.title}</h4> {/* Use question for API, title for localStorage */}                {typeof poll.isActive !== 'undefined' ? ( // Display status badge based on isActive
+            <div className={`poll-card ${poll.isActive === false ? 'closed' : ''}`} key={poll._id}>
+              <div className="poll-header">
+                <h4 className="poll-question">{poll.question}</h4>
+                {typeof poll.isActive !== 'undefined' && (
                   <span className={`poll-status-badge ${poll.isActive ? 'active' : 'closed'}`}>
                     {poll.isActive ? 'Active' : 'Closed'}
-                  </span>
-                ) : poll.status && ( // Fallback for old status field
-                  <span className={`poll-status-badge ${poll.status}`}>
-                    {poll.status.charAt(0).toUpperCase() + poll.status.slice(1)}
                   </span>
                 )}
               </div>
               
               {poll.description && <p className="poll-description">{poll.description}</p>}
               
-              <Bar data={chartData} options={chartOptions} />
+              <div style={{ height: '300px', width: '100%' }}>
+                <Bar data={chartData} options={chartOptions} />
+              </div>
               
               <p className="poll-total">
                 Total Votes: <strong>{total}</strong>
               </p>
               
-              {poll.endDate && ( // Display end date if available
+              {poll.endDate && (
                 <p className="poll-end-date">
                   Ends on: <strong>{new Date(poll.endDate).toLocaleDateString()}</strong>
                 </p>
               )}
 
               <div className="poll-actions">
-                {poll._id ? ( // Show action buttons only for API polls
-                  <>
+                {/* Show action buttons only for API polls - _id check is sufficient */}                <>
                     <button 
                       className="toggle-active-btn"
                       onClick={() => handleToggleActive(poll)}
@@ -214,15 +222,6 @@ const PollResults = () => {
                       Delete
                     </button>
                   </>
-                ) : (
-                  // Fallback for localStorage data - Keep old toggle if needed
-                   <button
-                     className="publish-btn"
-                     onClick={() => togglePublish(index)}
-                   >
-                     {poll.published ? 'Unpublish' : 'Publish'} Result
-                   </button>
-                )}
               </div>
             </div>
           );
