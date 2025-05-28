@@ -3,8 +3,8 @@
   --primary-gradient: linear-gradient(135deg, #4e7cff, #6e8eff);
   --hover-gradient: linear-gradient(135deg, #3b5fe0, #5e7eff);
   --background-gradient: linear-gradient(135deg, #f8fbff 0%, #eef2f7 100%);
-  --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  --hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  --hover-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
   --transition-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -51,16 +51,16 @@
 }
 
 .poll-card {
-  background: #031936;
+  background: white;
   border-radius: 16px;
   padding: 30px;
   margin-bottom: 32px;
   box-shadow: var(--card-shadow);
-  border: 1px solid rgba(78, 124, 255, 0.2);
+  border: 1px solid #e0e0e0;
   transition: all 0.4s var(--transition-bounce);
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(10px);
+  backdrop-filter: none;
 }
 
 .poll-card::before {
@@ -70,7 +70,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: var(--primary-gradient);
+  background: linear-gradient(90deg, #1E3A8A, #172C6A);
   transform: scaleX(0);
   transition: transform 0.4s var(--transition-bounce);
   transform-origin: left;
@@ -88,7 +88,7 @@
 .poll-question {
   font-size: 24px;
   font-weight: 600;
-  color: #ffffff;
+  color: #333;
   margin-bottom: 25px;
   line-height: 1.4;
   position: relative;
@@ -102,7 +102,7 @@
   left: 0;
   width: 60px;
   height: 3px;
-  background: var(--primary-gradient);
+  background: #1E3A8A;
   border-radius: 3px;
 }
 
@@ -113,16 +113,16 @@
 }
 
 .poll-options li {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: #f9f9f9;
   margin-bottom: 12px;
   padding: 16px 20px;
   border-radius: 12px;
-  color: #ffffff;
+  color: #333;
   font-size: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid rgba(78, 124, 255, 0.2);
+  border: 1px solid #eee;
   transition: all 0.3s var(--transition-bounce);
   position: relative;
   overflow: hidden;
@@ -135,14 +135,14 @@
   top: 0;
   height: 100%;
   width: 0;
-  background: linear-gradient(90deg, rgba(78, 124, 255, 0.1), transparent);
+  background: rgba(30, 58, 138, 0.1);
   transition: width 0.3s ease;
 }
 
 .poll-options li:hover {
   transform: translateX(8px);
-  border-color: #4e7cff;
-  background-color: rgba(78, 124, 255, 0.1);
+  border-color: #1E3A8A;
+  background-color: rgba(30, 58, 138, 0.05);
 }
 
 .poll-options li:hover::before {
@@ -468,20 +468,69 @@
   margin-bottom: 15px;
 }
 
-.graph-control-btn {
-  padding: 8px 16px;
+.graph-control-btn,
+.publish-btn,
+.refresh-btn,
+.close-btn,
+.delete-btn {
+  padding: 12px 24px;
   border: none;
-  border-radius: 6px;
-  background: var(--primary-gradient);
-  color: white;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
-  transition: all 0.3s ease;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
+  background-color: #1E3A8A;
+  color: #93C5FD;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.3);
 }
 
-.graph-control-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(78, 124, 255, 0.2);
+.graph-control-btn:hover,
+.publish-btn:hover,
+.refresh-btn:hover,
+.close-btn:hover,
+.delete-btn:hover {
+  background-color: #172C6A;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4);
+  color: #93C5FD;
+}
+
+.graph-control-btn:active,
+.publish-btn:active,
+.refresh-btn:active,
+.close-btn:active,
+.delete-btn:active {
+  transform: translateY(-2px) scale(0.98);
+  transition: all 0.2s ease;
+}
+
+.graph-control-btn::after,
+.publish-btn::after,
+.refresh-btn::after,
+.close-btn::after,
+.delete-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.graph-control-btn:hover::after,
+.publish-btn:hover::after,
+.refresh-btn:hover::after,
+.close-btn:hover::after,
+.delete-btn:hover::after {
+  opacity: 1;
 }
 
 /* Graph Animations */
@@ -552,54 +601,37 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
-  background: rgba(255, 255, 255, 0.05);
+  background: white;
   padding: 20px;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(78, 124, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: none;
+  border: 1px solid #e0e0e0;
   transition: all 0.3s ease;
 }
 
 .filter-controls:hover {
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
-  border-color: rgba(78, 124, 255, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-color: #ccc;
 }
 
 .status-filter {
   padding: 10px 16px;
   border-radius: 8px;
-  border: 1px solid rgba(78, 124, 255, 0.2);
+  border: 1px solid #ccc;
   margin-left: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: rgba(255, 255, 255, 0.05);
-  color: #ffffff;
+  background: white;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .status-filter:hover {
-  border-color: #4e7cff;
+  border-color: #1E3A8A;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  background: rgba(78, 124, 255, 0.1);
-}
-
-.refresh-btn {
-  padding: 12px 24px;
-  background: var(--primary-gradient);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.refresh-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-  background: var(--hover-gradient);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: #f0f0f0;
 }
 
 .poll-status-badge {
