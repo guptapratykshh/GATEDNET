@@ -77,10 +77,6 @@ const Navigation = () => {
             label: 'Amenities',
             children: [
                 {
-                    key: '/booked-amenities',
-                    label: 'Book Amenities'
-                },
-                {
                     key: '/view-booked-amenities',
                     label: 'View Bookings'
                 }
@@ -91,10 +87,6 @@ const Navigation = () => {
             icon: <ToolOutlined />,
             label: 'Maintenance',
             children: [
-                {
-                    key: '/maintenance-updates',
-                    label: 'Maintenance Updates'
-                },
                 {
                     key: '/maintenance-updates/add-task',
                     label: 'Add Task'

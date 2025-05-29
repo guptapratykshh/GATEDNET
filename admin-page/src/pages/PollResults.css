@@ -51,16 +51,18 @@
 }
 
 .poll-card {
-  background: white;
+  background: #031936;
   border-radius: 16px;
   padding: 30px;
   margin-bottom: 32px;
   box-shadow: var(--card-shadow);
-  border: 1px solid #e0e0e0;
+  border: 1px solid rgba(59, 130, 246, 0.15);
   transition: all 0.4s var(--transition-bounce);
   position: relative;
   overflow: hidden;
   backdrop-filter: none;
+  color: #ffffff;
+  font-weight: 700;
 }
 
 .poll-card::before {
@@ -87,8 +89,8 @@
 
 .poll-question {
   font-size: 24px;
-  font-weight: 600;
-  color: #333;
+  font-weight: 700;
+  color: #ffffff;
   margin-bottom: 25px;
   line-height: 1.4;
   position: relative;
@@ -102,7 +104,7 @@
   left: 0;
   width: 60px;
   height: 3px;
-  background: #1E3A8A;
+  background: #93c5fd;
   border-radius: 3px;
 }
 
@@ -113,19 +115,21 @@
 }
 
 .poll-options li {
-  background-color: #f9f9f9;
+  background-color: #1A2E45;
   margin-bottom: 12px;
   padding: 16px 20px;
   border-radius: 12px;
-  color: #333;
+  color: #ffffff;
   font-size: 16px;
+  font-weight: 700;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid #eee;
+  border: 1px solid rgba(59, 130, 246, 0.1);
   transition: all 0.3s var(--transition-bounce);
   position: relative;
   overflow: hidden;
+  backdrop-filter: none;
 }
 
 .poll-options li::before {
@@ -135,14 +139,14 @@
   top: 0;
   height: 100%;
   width: 0;
-  background: rgba(30, 58, 138, 0.1);
+  background: rgba(59, 130, 246, 0.1);
   transition: width 0.3s ease;
 }
 
 .poll-options li:hover {
   transform: translateX(8px);
-  border-color: #1E3A8A;
-  background-color: rgba(30, 58, 138, 0.05);
+  border-color: #3b82f6;
+  background-color: #2A4058;
 }
 
 .poll-options li:hover::before {
@@ -601,37 +605,45 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
-  background: white;
+  background: #031936;
   padding: 20px;
   border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   backdrop-filter: none;
-  border: 1px solid #e0e0e0;
+  border: 1px solid rgba(59, 130, 246, 0.15);
   transition: all 0.3s ease;
+  color: #ffffff;
 }
 
 .filter-controls:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  border-color: #ccc;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  border-color: rgba(59, 130, 246, 0.3);
 }
 
 .status-filter {
   padding: 10px 16px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid rgba(59, 130, 246, 0.3);
   margin-left: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: white;
-  color: #333;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: #1A2E45;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2C114.5L159.2%2C282.2c-1.4%2C1.4-3.3%2C2.2-5.2%2C2.2h-1.8c-1.9%2C0-3.8-0.8-5.2-2.2L5.5%2C114.5c-2.8-2.8-2.8-7.2%2C0-10c2.8-2.8%2C7.2-2.8%2C10%2C0l128.1%2C128.1L277%2C104.5c2.8-2.8%2C7.2-2.8%2C10%2C0C289.8%2C107.3%2C289.8%2C111.7%2C287%2C114.5z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 12px auto;
 }
 
 .status-filter:hover {
-  border-color: #1E3A8A;
+  border-color: #3b82f6;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  background: #f0f0f0;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  background: #2A4058;
+  color: #ffffff;
 }
 
 .poll-status-badge {
@@ -784,4 +796,60 @@
   background: linear-gradient(135deg, #c82333, #e74c3c);
   transform: translateY(-2px);
   box-shadow: 0 6px 15px rgba(220, 53, 69, 0.3);
+}
+
+/* Poll Total */
+.poll-total {
+  color: #ffffff;
+  font-size: 1.1rem;
+  margin-top: 20px;
+  font-weight: 700;
+}
+
+.poll-total strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Poll End Date */
+.poll-end-date {
+  color: #ffffff;
+  font-size: 1rem;
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.poll-end-date strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+/* Adjust Refresh button color */
+.refresh-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
+  background: var(--primary-gradient);
+  color: white;
+  box-shadow: 0 4px 12px rgba(78, 124, 255, 0.3);
+}
+
+.refresh-btn:hover {
+  background: var(--hover-gradient);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(78, 124, 255, 0.4);
+  color: white;
+}
+
+.refresh-btn:active {
+  transform: translateY(-2px) scale(0.98);
+  transition: all 0.2s ease;
 }

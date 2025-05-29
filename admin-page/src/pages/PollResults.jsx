@@ -150,31 +150,52 @@ const PollResults = () => {
             plugins: {
               legend: {
                 display: true,
-                position: 'top',
+                labels: {
+                  color: '#cccccc',
+                  font: {
+                    weight: 'bold',
+                  },
+                },
               },
               title: {
                 display: true,
                 text: 'Poll Results',
+                color: '#ffffff',
                 font: {
-                  size: 16
-                }
+                  size: 20,
+                  weight: 'bold',
+                },
               },
               tooltip: {
-                callbacks: {
-                  label: function(context) {
-                    const value = context.raw;
-                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                    const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
-                    return `${value} votes (${percentage}%)`;
-                  }
-                }
+                backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                bodyColor: '#ffffff',
+                titleColor: '#ffffff',
+                borderColor: 'rgba(255, 255, 255, 0.2)',
+                borderWidth: 1,
+                cornerRadius: 4,
               }
             },
             scales: {
-              y: {
-                beginAtZero: true,
+              x: {
                 ticks: {
-                  stepSize: 1
+                  color: '#ffffff',
+                  font: {
+                    weight: 'bold'
+                  }
+                },
+                grid: {
+                  color: 'rgba(255, 255, 255, 0.1)'
+                }
+              },
+              y: {
+                ticks: {
+                  color: '#ffffff',
+                  font: {
+                    weight: 'bold'
+                  }
+                },
+                grid: {
+                  color: 'rgba(255, 255, 255, 0.1)'
                 }
               }
             }
@@ -194,7 +215,7 @@ const PollResults = () => {
               {poll.description && <p className="poll-description">{poll.description}</p>}
               
               <div style={{ height: '300px', width: '100%' }}>
-                <Bar data={chartData} options={chartOptions} />
+              <Bar data={chartData} options={chartOptions} />
               </div>
               
               <p className="poll-total">

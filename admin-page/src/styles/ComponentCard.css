@@ -104,6 +104,17 @@ body {
 .action-container,
 .button-container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+/* Poll button container - horizontal layout */
+.poll-button-container {
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -112,7 +123,7 @@ body {
   width: 100%;
 }
 
-/* Action Links */
+/* Action Links (used for Add/Update Members, View Announcements) */
 .action {
   display: flex;
   align-items: center;
@@ -121,92 +132,103 @@ body {
   font-weight: 700;
   font-size: 1.1rem;
   cursor: pointer;
-  margin: 0 auto;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateY(0) scale(1);
-  position: relative;
-  overflow: hidden;
-  background-color: #1E3A8A;
-  color: #93C5FD;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 15px;
-  width: 160px;
-  text-align: center;
-  box-sizing: border-box;
-  text-transform: uppercase;
+  margin: 6px 0;
+  transition: color 0.3s ease;
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  color: #60a5fa;
+  text-transform: none;
 }
 
 .action:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
-  background-color: #172C6A;
-}
-
-.action:active {
-  transform: translateY(-2px) scale(0.98);
-  transition: all 0.2s ease;
-}
-
-.add-member {
-  /* Removed specific background to inherit from .action */
-}
-
-.add-member:hover {
-  /* Removed specific background hover to inherit from .action:hover */
-}
-
-.update-member {
-  /* Removed specific background to inherit from .action */
-}
-
-.update-member:hover {
-  /* Removed specific background hover to inherit from .action:hover */
-}
-
-/* Add glow effect to action buttons */
-.action::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.action:hover::after {
-  opacity: 1;
+  color: #3b82f6;
+  text-decoration: none;
 }
 
 /* Style for buttons directly inside cards */
-.card button {
-  background-color: #1E3A8A;
-  color: #93C5FD;
-  border: none;
+/* First row buttons (Active Votes and Maintenance) */
+.vote-button,
+.maintenance-btn,
+.poll-button {
+  background-color: #1E3A8A !important;
+  color: #93C5FD !important;
+  border: none !important;
   border-radius: 8px;
   padding: 10px 15px;
   font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateY(0) scale(1);
   position: relative;
   overflow: hidden;
   text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
 
-.card button:hover {
-  background-color: #172C6A;
-  color: #93C5FD;
+.vote-button:hover,
+.maintenance-btn:hover,
+.poll-button:hover {
+  background-color: #172C6A !important;
+  color: #93C5FD !important;
   transform: translateY(-4px) scale(1.02);
   box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
+  text-decoration: none !important;
 }
 
-.card button:active {
+.vote-button:active,
+.maintenance-btn:active,
+.poll-button:active {
   transform: translateY(-2px) scale(0.98);
   transition: all 0.2s ease;
+}
+
+/* Second row buttons (text-only style) */
+.card button:not(.vote-button):not(.maintenance-btn):not(.poll-button) {
+  background: none !important;
+  color: #60a5fa !important;
+  border: none !important;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
+  text-transform: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.card button:not(.vote-button):not(.maintenance-btn):not(.poll-button):hover {
+  background: none !important;
+  color: #3b82f6 !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+.card button:not(.vote-button):not(.maintenance-btn):not(.poll-button):active {
+  transform: translateY(-1px) scale(0.98);
+  transition: all 0.2s ease;
+}
+
+/* Remove specific styles from vote-button that are now in the base style */
+.vote-button {
+  margin: auto;
+}
+
+/* Remove specific styles from poll-button that are now in the base style */
+.poll-button {
+  min-width: 150px;
 }
 
 /* Active Votes */
@@ -221,52 +243,6 @@ body {
   border-radius: 12px;
   border: 1px solid rgba(59, 130, 246, 0.2);
   min-height: 120px;
-}
-
-.vote-button {
-  background-color: #1E3A8A;
-  color: #93C5FD;
-  border: none;
-  border-radius: 6px;
-  padding: 0.75rem 1rem;
-  font-size: 1.1rem;
-  font-weight: 700;
-  cursor: pointer;
-  flex: 0 0 auto;
-  min-width: 120px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateY(0) scale(1);
-  position: relative;
-  overflow: hidden;
-  margin: auto;
-  text-transform: uppercase;
-}
-
-.vote-button:hover {
-  background-color: #172C6A;
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
-}
-
-.vote-button:active {
-  transform: translateY(-2px) scale(0.98);
-  transition: all 0.2s ease;
-}
-
-.vote-button.create::before {
-  content: "+";
-  font-size: 1.5rem;
-  font-weight: 300;
-}
-
-.vote-button.view::before {
-  content: "✓";
-  font-size: 1.2rem;
 }
 
 /* Maintenance */
@@ -311,29 +287,6 @@ body {
 }
 
 /* Buttons */
-.maintenance-btn {
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateY(0) scale(1);
-  position: relative;
-  overflow: hidden;
-  animation: fadeSlide 0.9s ease-out both;
-}
-
-.maintenance-btn:hover {
-  background-color: #1d4ed8;
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.2);
-}
-
-.maintenance-btn:active {
-  transform: translateY(-2px) scale(0.98);
-  transition: all 0.2s ease;
-}
-
 .add-btn,
 .update-btn,
 .view-btn {
@@ -420,20 +373,64 @@ body {
   height: 48px;
 }
 
+/* Style for the 'See all bookings' and similar links */
 .card-link {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
   color: #60a5fa;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
+  margin: 6px 0;
+  transition: color 0.3s ease, transform 0.3s ease-in-out;
   text-decoration: none;
+  gap: 6px;
+  background: none;
+  text-transform: none;
 }
 
 .card-link:hover {
   color: #3b82f6;
   text-decoration: none;
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Explicitly remove button styles for .action within cards if they are buttons */
+.card button.action {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  color: #60a5fa !important;
+  font-weight: 600;
+  text-transform: none;
+  transition: color 0.3s ease;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.card button.action:hover {
+   color: #3b82f6 !important;
+   text-decoration: none !important;
+   transform: none !important;
+   box-shadow: none !important;
+}
+
+/* Explicitly remove button styles for .card-link within cards if they are buttons */
+.card button.card-link {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  color: #60a5fa !important;
+  font-weight: 600;
+  text-transform: none;
+  transition: color 0.3s ease, transform 0.3s ease-in-out;
+}
+
+.card button.card-link:hover {
+   color: #3b82f6 !important;
+   text-decoration: none !important;
+   transform: translateY(-2px) scale(1.02);
 }
 
 /* Responsive Adjustments */
@@ -519,59 +516,5 @@ body {
 .add-btn:hover::after,
 .update-btn:hover::after,
 .view-btn:hover::after {
-  opacity: 1;
-}
-
-/* Poll Buttons */
-.poll-button {
-  background-color: #1E3A8A;
-  color: #93C5FD;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 15px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateY(0) scale(1);
-  position: relative;
-  overflow: hidden;
-  width: 160px;
-  text-align: center;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  text-transform: uppercase;
-}
-
-.poll-button:hover {
-  background-color: #172C6A;
-  color: #93C5FD;
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
-}
-
-.poll-button:active {
-  transform: translateY(-2px) scale(0.98);
-  transition: all 0.2s ease;
-}
-
-/* Add glow effect to poll buttons */
-.poll-button::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.poll-button:hover::after {
   opacity: 1;
 }

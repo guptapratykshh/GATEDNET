@@ -4,7 +4,7 @@ import { getIdTokenFromCustomToken } from "../utils/auth";
 import { useNavigate, Link } from "react-router-dom";
 import "../styles/auth.css";
 
-export default function AdminLogin() {
+export default function AdminLogin({ setIsAuthenticated }) {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -48,6 +48,7 @@ export default function AdminLogin() {
         localStorage.setItem("admin_id_token", idToken);
         localStorage.setItem("admin_user", JSON.stringify(res.admin));
         
+        setIsAuthenticated(true);
         console.log("Login successful, redirecting to dashboard...");
         navigate("/dashboard");
       } catch (firebaseError) {

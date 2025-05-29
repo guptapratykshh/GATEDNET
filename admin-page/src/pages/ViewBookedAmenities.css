@@ -95,52 +95,100 @@
 
 .bookings-container {
   padding: 20px;
-  max-width: 700px;
-  margin: 20px auto;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1000px; /* Adjust max width as needed */
+  margin: 20px auto; /* Center the container */
+  background-color: #ffffff; /* Main background set to white */
+  color: #333333; /* Default text color for container */
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .bookings-container h2 {
   text-align: center;
-  color: #333;
-  margin-bottom: 20px;
+  color: #031936; /* Dark navy blue heading color */
+  margin-bottom: 30px;
+  font-size: 24px;
 }
 
 .bookings-list {
-  list-style-type: none;
+  list-style: none;
   padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 20px; /* Gap between booking items */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
 }
 
 .bookings-list li {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 15px 20px;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-  transition: box-shadow 0.3s ease;
-  cursor: pointer;
+  background-color: #031936; /* Dark navy blue card background */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Adjust shadow for dark background */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(59, 130, 246, 0.15); /* Add a subtle border */
 }
 
 .bookings-list li:hover {
-  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.booking-detail {
+  margin-bottom: 10px;
+  line-height: 1.6;
+  color: #cccccc; /* Light gray for detail text on dark card */
 }
 
 .booking-label {
-  font-weight: 600;
-  color: #555;
+  font-weight: bold;
+  color: #ffffff; /* White color for labels on dark card */
+  margin-right: 5px;
 }
 
 .booking-value {
-  margin-left: 6px;
-  color: #222;
+  font-weight: normal;
+  color: #cccccc; /* Light gray for values on dark card */
+}
+
+.booking-status-dropdown {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(59, 130, 246, 0.3); /* Blue border */
+  background-color: #1A2E45; /* Slightly lighter dark background for dropdown */
+  color: #ffffff; /* White text */
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2C114.5L159.2%2C282.2c-1.4%2C1.4-3.3%2C2.2-5.2%2C2.2h-1.8c-1.9%2C0-3.8-0.8-5.2-2.2L5.5%2C114.5c-2.8-2.8-2.8-7.2%2C0-10c2.8-2.8%2C7.2-2.8%2C10%2C0l128.1%2C128.1L277%2C104.5c2.8-2.8%2C7.2-2.8%2C10%2C0C289.8%2C107.3%2C289.8%2C111.7%2C287%2C114.5z%22%2F%3E%3C%2Fsvg%3E'); /* Custom white arrow */
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 12px auto;
+}
+
+.booking-status-dropdown:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+}
+
+.booking-status-dropdown:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 .no-bookings {
   text-align: center;
-  font-size: 1.1rem;
-  color: #777;
-  font-style: italic;
+  padding: 40px;
+  background-color: #f0f0f0; /* Light background for message on white page background */
+  border-radius: 8px;
+  color: #666666; /* Dark text color for message */
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .bookings-list {
+    grid-template-columns: 1fr; /* Stack cards on small screens */
+  }
 } 

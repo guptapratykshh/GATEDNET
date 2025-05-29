@@ -2,6 +2,8 @@
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  background-color: #ffffff;
+  color: #000000;
 }
 
 .announcements-header {
@@ -9,6 +11,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  color: #000000;
 }
 
 .add-new-btn {
@@ -32,7 +35,7 @@
   align-items: center;
   height: 200px;
   font-size: 18px;
-  color: #6c757d;
+  color: #333333;
 }
 
 .error-message {
@@ -46,9 +49,9 @@
 .no-announcements {
   text-align: center;
   padding: 40px;
-  background-color: #f8f9fa;
+  background-color: #f0f0f0;
   border-radius: 8px;
-  color: #6c757d;
+  color: #666666;
   margin-top: 20px;
 }
 
@@ -59,15 +62,18 @@
 }
 
 .announcement-card {
-  background-color: white;
+  background-color: #031936;
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   transition: transform 0.2s;
+  color: #ffffff;
+  border: 1px solid rgba(59, 130, 246, 0.15);
 }
 
 .announcement-card:hover {
   transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 .announcement-header {
@@ -75,12 +81,13 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 12px;
+  color: #ffffff;
 }
 
 .announcement-header h3 {
   margin: 0;
   font-size: 18px;
-  color: #212529;
+  color: #ffffff;
 }
 
 .announcement-actions {
@@ -104,14 +111,14 @@
 }
 
 .announcement-message {
-  color: #495057;
+  color: #cccccc;
   line-height: 1.5;
   margin-bottom: 16px;
   word-break: break-word;
 }
 
 .announcement-date {
-  color: #6c757d;
+  color: #cccccc;
   font-size: 12px;
   text-align: right;
 }

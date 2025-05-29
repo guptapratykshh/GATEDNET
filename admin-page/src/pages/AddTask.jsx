@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/Maintenance.css';
+import '../styles/AddTask.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -103,7 +104,7 @@ const AddTask = () => {
   }
 
   return (
-    <div className="maintenance-container">
+    <div className="add-task-container">
       <h2 className="maintenance-heading">Add New Task</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">

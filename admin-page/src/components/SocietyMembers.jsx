@@ -24,10 +24,10 @@ const SocietyMembers = () => {
       />
       <div className="action-container">
         <button className="action add-member" onClick={handleAddMemberClick}>
-          Add New Members
+          <span style={{ marginRight: '5px' }}>+</span> Add New Members
         </button>
         <button className="action update-member" onClick={handleUpdateMembersClick}>
-          Update Members
+          <span style={{ marginRight: '5px' }}>↻</span> Update Members
         </button>
       </div>
     </div>

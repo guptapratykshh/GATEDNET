@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { adminLogout } from '../api/admin';
 import '../styles/Header.css';
 
-const Header = () => {
+const Header = ({ setIsAuthenticated }) => {
   const [adminName, setAdminName] = useState('Admin');
   const navigate = useNavigate();
 
@@ -25,6 +25,8 @@ const Header = () => {
   const handleLogout = async () => {
     const result = await adminLogout();
     if (result.success) {
+      localStorage.removeItem('admin_id_token');
+      setIsAuthenticated(false);
       navigate('/admin/login');
     } else {
       console.error('Logout failed:', result.error);
