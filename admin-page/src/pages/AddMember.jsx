@@ -7,6 +7,7 @@ const AddMember = () => {
     email: '',
     flat: '',
     name: '',
+    password: '',
   });
 
   const [successMessage, setSuccessMessage] = useState('');
@@ -30,7 +31,7 @@ const AddMember = () => {
         setErrorMessage(result.error);
       } else {
         setSuccessMessage('✅ Member added successfully!');
-        setFormData({ email: '', flat: '', name: '' });
+        setFormData({ email: '', flat: '', name: '', password: '' });
 
         // For backward compatibility with localStorage version
         const existingData = JSON.parse(localStorage.getItem('membersExcel')) || [];
@@ -93,6 +94,16 @@ const AddMember = () => {
           value={formData.name} 
           onChange={handleChange} 
           placeholder="Name" 
+          required 
+          disabled={isLoading}
+        />
+
+        <input 
+          name="password" 
+          type="password"
+          value={formData.password} 
+          onChange={handleChange} 
+          placeholder="Password" 
           required 
           disabled={isLoading}
         />
