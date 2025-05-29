@@ -63,7 +63,7 @@
 /* Add Task Button Style (using previous button style) */
 .add-task-container .btn-primary {
   display: inline-block;
-  background: #1E3A8A; /* Dark navy blue background */
+  background: #345fd6; /* Dark navy blue background */
   color: white; /* White text color */
   padding: 12px 25px;
   border: none;
