@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './components/Header';
-import HeroSection from './components/HeroSection';
-import FeaturesSection from './components/FeaturesSection';
+import Header from '../landing-page/src/components/Header';
+import HeroSection from '../landing-page/src/components/HeroSection';
+import FeaturesSection from '../landing-page/src/components/FeaturesSection';
 
 function App() {
   return (
