@@ -19,9 +19,6 @@ const adminActivitySchema = new mongoose.Schema({
       'ADD_MEMBER',
       'UPDATE_MEMBER',
       'DELETE_MEMBER',
-      'ADD_REMINDER',
-      'UPDATE_REMINDER',
-      'DELETE_REMINDER'
     ]
   },
   adminId: {

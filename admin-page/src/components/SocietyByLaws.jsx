@@ -31,7 +31,7 @@ const SocietyByLaws = () => {
       <img src={societyImage} alt="Society Bylaws" className="society-image" />
       <p
         onClick={openBylaws}
-        style={{ cursor: 'pointer', textDecoration: 'underline' }}
+        style={{ cursor: 'pointer'}}
       >
         📝 Click to View Society Bylaws
       </p>

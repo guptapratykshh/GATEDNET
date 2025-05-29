@@ -54,7 +54,7 @@ body {
 }
 
 .card {
-  background-color: #0b2c59;
+  background-color: #0D1726;
   padding: 20px;
   border-radius: 20px;
   flex: 1;
@@ -151,6 +151,7 @@ body {
     opacity: 1;
   }
 }
+
 .status {
   padding: 2px 8px;
   border-radius: 4px;
@@ -168,18 +169,21 @@ body {
   background-color: #00ff00;
   color: #000;
 }
+
 .society-members-image {
   width: 180px;      /* Try 200px if you want it even bigger */
   height: auto;      /* Maintains aspect ratio */
   display: block;
   margin: 16px auto 24px auto; /* Top and bottom spacing, centered horizontally */
 }
+
 .society-image {
   width: 180px; /* Adjust width as needed */
   height: auto; /* Maintains aspect ratio */
   display: block; /* Ensures proper alignment */
   margin: 10px auto; /* Centers the image */
 }
+
 .announcement-image {
   width: 180px;       /* Adjust width as needed */
   height: auto;       /* Maintain aspect ratio */
@@ -188,12 +192,75 @@ body {
   border-radius: 8px; /* Optional: rounded corners */
   object-fit: contain; /* Ensure image fits nicely */
 }
+
 .booked-amenities-image {
   width: 150px;
   height: auto;
   display: block;
   margin: 10px auto;
   object-fit: cover;
+}
+
+/* Add navigation specific styles */
+.ant-menu {
+  font-size: 1rem; /* Increase base font size for menu items */
+  background-color: #0D1726; /* Set background color */
+}
+
+.ant-menu-dark .ant-menu-sub, .ant-menu.ant-menu-dark .ant-menu-sub {
+  background-color: #0D1726; /* Ensure submenus also have the same background */
+}
+
+.ant-menu-item,
+.ant-menu-submenu-title {
+  padding: 12px 24px !important; /* Adjust padding for larger clickable area */
+  margin: 4px 0; /* Add some vertical margin between items */
+  transition: all 0.3s ease-in-out; /* Added transition for smooth effects */
+  position: relative; /* Needed for pseudo-elements or absolute positioning */
+  overflow: hidden; /* Hides overflow from effects like underline */
+}
+
+.ant-menu-item .anticon,
+.ant-menu-submenu-title .anticon {
+  font-size: 1.1rem; /* Increase icon size slightly */
+  transition: transform 0.3s ease-in-out; /* Add transition for icon */
+}
+
+.ant-menu-dark .ant-menu-item-selected {
+  background-color: #1E3A8A !important; /* Keep selected item background consistent */
+}
+
+.ant-menu-dark .ant-menu-item:hover,
+.ant-menu-dark .ant-menu-submenu-title:hover {
+  background-color: #172C6A !important; /* Adjust hover background color */
+  color: #93C5FD !important; /* Adjust hover text color */
+  transform: translateX(5px); /* Slide effect on hover */
+}
+
+.ant-menu-dark .ant-menu-item:hover .anticon,
+.ant-menu-dark .ant-menu-submenu-title:hover .anticon {
+  transform: scale(1.2); /* Scale icon on hover */
+}
+
+/* Optional: Add a subtle underline effect on hover */
+.ant-menu-item::before,
+.ant-menu-submenu-title::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #93C5FD; /* Underline color */
+  transform: scaleX(0); /* Start hidden */
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-in-out;
+}
+
+.ant-menu-item:hover::before,
+.ant-menu-submenu-title:hover::before {
+  transform: scaleX(1); /* Expand on hover */
+  transform-origin: bottom left;
 }
 
 

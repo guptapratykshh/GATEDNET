@@ -39,16 +39,8 @@ const testAnnouncement = {
   message: 'This is a test announcement for API verification.'
 };
 
-const testReminder = {
-  title: 'Test Reminder',
-  description: 'This is a test reminder for API verification.',
-  dueDate: new Date(Date.now() + 86400000), // Tomorrow
-  priority: 'High'
-};
-
 // API URLs
 const ANNOUNCEMENTS_URL = 'http://localhost:5000/api/announcements';
-const REMINDERS_URL = 'http://localhost:5000/api/reminders';
 
 // Test functions for Announcements
 const testAddAnnouncement = async (token) => {
@@ -100,73 +92,6 @@ const testDeleteAnnouncement = async (token, id) => {
   }
 };
 
-// Test functions for Reminders
-const testAddReminder = async (token) => {
-  console.log('\n--- Testing Add Reminder ---');
-  try {
-    const response = await axios.post(`${REMINDERS_URL}/add`, testReminder, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    console.log('Reminder added:', response.data);
-    return response.data.reminder._id;
-  } catch (error) {
-    console.error('Error adding reminder:', error.response?.data || error.message);
-    return null;
-  }
-};
-
-const testGetAllReminders = async (token) => {
-  console.log('\n--- Testing Get All Reminders ---');
-  try {
-    const response = await axios.get(REMINDERS_URL, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    console.log('Reminders fetched:', response.data.reminders.length);
-    return response.data.reminders;
-  } catch (error) {
-    console.error('Error getting reminders:', error.response?.data || error.message);
-    return [];
-  }
-};
-
-const testToggleReminderStatus = async (token, id) => {
-  console.log('\n--- Testing Toggle Reminder Status ---');
-  try {
-    const response = await axios.patch(`${REMINDERS_URL}/${id}/toggle`, {}, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    console.log('Reminder status toggled:', response.data);
-    return true;
-  } catch (error) {
-    console.error('Error toggling reminder status:', error.response?.data || error.message);
-    return false;
-  }
-};
-
-const testDeleteReminder = async (token, id) => {
-  console.log('\n--- Testing Delete Reminder ---');
-  try {
-    const response = await axios.delete(`${REMINDERS_URL}/${id}`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    console.log('Reminder deleted:', response.data);
-    return true;
-  } catch (error) {
-    console.error('Error deleting reminder:', error.response?.data || error.message);
-    return false;
-  }
-};
-
 // Main test function
 const runTests = async () => {
   try {
@@ -196,16 +121,6 @@ const runTests = async () => {
       await testGetAllAnnouncements(customToken);
       await testDeleteAnnouncement(customToken, announcementId);
       await testGetAllAnnouncements(customToken); // Verify deletion
-    }
-    
-    // Test Reminders
-    console.log('\n=== TESTING REMINDERS ===');
-    let reminderId = await testAddReminder(customToken);
-    if (reminderId) {
-      await testGetAllReminders(customToken);
-      await testToggleReminderStatus(customToken, reminderId);
-      await testDeleteReminder(customToken, reminderId);
-      await testGetAllReminders(customToken); // Verify deletion
     }
     
     console.log('\nAll tests completed!');

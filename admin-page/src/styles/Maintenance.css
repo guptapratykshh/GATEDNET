@@ -1,13 +1,16 @@
 /* Container and Headings */
 .maintenance-container {
-  max-width: 900px;
+  max-width: 800px;
   margin: 40px auto;
-  background-color: #fdfdfd;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  color: #333;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 35px 40px;
+  border-radius: 20px;
+  background-color: #F5F5F5;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  color: #333333;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .maintenance-heading {
@@ -15,54 +18,82 @@
   margin-bottom: 20px;
   font-weight: 700;
   text-align: center;
-  color: #2c3e50;
+  color: #031936;
 }
 
 /* Form Styling */
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.form-control {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.form-control:focus {
-  border-color: #3498db;
-  box-shadow: 0 0 8px rgba(52, 152, 219, 0.4);
-  outline: none;
-}
+/* REMOVE THESE STYLES - THEY ARE NOW IN AddTask.css */
 
 /* Button Styling */
-.btn {
+/* Base button style */
+.btn,
+.maintenance-btn,
+.add-btn,
+.update-btn,
+.view-btn {
+  background: none !important; /* Remove background */
+  color: #60a5fa !important; /* Consistent text color */
+  border: none !important;
+  border-radius: 8px;
   padding: 12px 24px;
   font-size: 16px;
   font-weight: 600;
-  border: none;
-  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
+  text-transform: none; /* Remove uppercase */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
 }
 
+/* Remove specific styles from .btn-primary that are now in the base style */
 .btn-primary {
-  background-color: #3498db;
-  color: #fff;
+  /* Styles moved to base .btn */
 }
 
-.btn-primary:hover {
-  background-color: #2980b9;
-  transform: translateY(-2px);
+.btn:hover,
+.maintenance-btn:hover,
+.add-btn:hover,
+.update-btn:hover,
+.view-btn:hover {
+  background: none !important; /* Remove hover background */
+  color: #3b82f6 !important; /* Consistent hover text color */
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: none !important; /* Remove hover shadow */
+  text-decoration: none !important; /* Remove underline on hover */
+}
+
+.btn:active,
+.maintenance-btn:active,
+.add-btn:active,
+.update-btn:active,
+.view-btn:active {
+  transform: translateY(-1px) scale(0.98);
+  transition: all 0.2s ease;
+}
+
+/* Remove glow effect since we're not using backgrounds */
+.btn::after,
+.maintenance-btn::after,
+.add-btn::after,
+.update-btn::after,
+.view-btn::after {
+  display: none;
+}
+
+/* Keep specific layout styles for add/update/view buttons */
+.add-btn,
+.update-btn,
+.view-btn {
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 /* Table Styling */
@@ -71,59 +102,115 @@
   border-collapse: collapse;
   margin-top: 20px;
   font-size: 16px;
-  color: #333;
-  background-color: #fff;
+  color: #ffffff;
+  background-color: #031936;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .maintenance-table th,
 .maintenance-table td {
   padding: 14px 18px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   text-align: left;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .maintenance-table th {
-  background-color: #f7f9fa;
+  background-color: #1A2E45;
   font-weight: 700;
-  color: #2c3e50;
+  color: #ffffff;
+}
+
+.maintenance-table tr {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
 }
 
 .maintenance-table tr:hover {
-  background-color: #f0f8ff;
-  transition: background-color 0.3s ease;
+  background-color: #2A4058;
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 .maintenance-table select {
   padding: 8px 10px;
   font-size: 15px;
   border-radius: 6px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  color: #333;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  background-color: #1A2E45;
+  color: #ffffff;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2C114.5L159.2%2C282.2c-1.4%2C1.4-3.3%2C2.2-5.2%2C2.2h-1.8c-1.9%2C0-3.8-0.8-5.2-2.2L5.5%2C114.5c-2.8-2.8-2.8-7.2%2C0-10c2.8-2.8%2C7.2-2.8%2C10%2C0l128.1%2C128.1L277%2C104.5c2.8-2.8%2C7.2-2.8%2C10%2C0C289.8%2C107.3%2C289.8%2C111.7%2C287%2C114.5z%22%2F%3E%3C%2Fsvg%3E');
+  background-repeat: no-repeat;
+  background-position: right 10px top 50%;
+  background-size: 12px auto;
+}
+
+.maintenance-table select:hover {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+  border-color: #3498db;
+}
+
+.maintenance-table select:focus {
+  transform: translateY(0);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+  border-color: #3498db;
+  outline: none;
 }
 
 /* Task List Styling */
 .task-list-item {
-  background-color: #ffffff;
+  background-color: #031936;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 12px;
   border-left: 6px solid #3498db;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
 }
 
 .task-list-item:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.task-list-item:active {
+  transform: translateY(-2px) scale(0.98);
+  transition: all 0.2s ease;
+}
+
+/* Add glow effect to task items */
+.task-list-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.05) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.task-list-item:hover::after {
+  opacity: 1;
 }
 
 .task-status {
   font-weight: 600;
-  color: #555;
+  color: #cccccc;
   margin-top: 8px;
 }
 
@@ -138,11 +225,11 @@
 }
 
 .task-status:contains("in-progress")::before {
-  color: royalblue;
+  color: #60a5fa;
 }
 
 .task-status:contains("resolved")::before {
-  color: green;
+  color: #34d399;
 }
 
 /* Responsive Enhancements */

@@ -7,7 +7,7 @@ const UpdateMembers = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [editingMember, setEditingMember] = useState(null);
-  const [editForm, setEditForm] = useState({ name: '', flat: '', contact: '' });
+  const [editForm, setEditForm] = useState({ name: '', flat: '', email: '' });
 
   const fetchMembers = async () => {
     setLoading(true);
@@ -21,7 +21,7 @@ const UpdateMembers = () => {
           _id: `local-${index}`,
           name: member.Name,
           flat: member.Flat,
-          contact: member.Contact
+          email: member.Email
         })));
       } else {
         setMembers(response.members || []);
@@ -35,7 +35,7 @@ const UpdateMembers = () => {
         _id: `local-${index}`,
         name: member.Name,
         flat: member.Flat,
-        contact: member.Contact
+        email: member.Email
       })));
     } finally {
       setLoading(false);
@@ -69,13 +69,13 @@ const UpdateMembers = () => {
     setEditForm({
       name: member.name,
       flat: member.flat,
-      contact: member.contact
+      email: member.email
     });
   };
 
   const cancelEditing = () => {
     setEditingMember(null);
-    setEditForm({ name: '', flat: '', contact: '' });
+    setEditForm({ name: '', flat: '', email: '' });
   };
 
   const handleEditFormChange = (e) => {
@@ -108,7 +108,7 @@ const UpdateMembers = () => {
     const localStorageFormat = members.map(member => ({
       Name: member.name,
       Flat: member.flat,
-      Contact: member.contact
+      Email: member.email
     }));
     localStorage.setItem('membersExcel', JSON.stringify(localStorageFormat));
   };
@@ -133,7 +133,7 @@ const UpdateMembers = () => {
             <tr>
               <th>Name</th>
               <th>Flat</th>
-              <th>Contact</th>
+              <th>Email</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -162,9 +162,9 @@ const UpdateMembers = () => {
                     </td>
                     <td>
                       <input
-                        type="text"
-                        name="contact"
-                        value={editForm.contact}
+                        type="email"
+                        name="email"
+                        value={editForm.email}
                         onChange={handleEditFormChange}
                         required
                       />
@@ -188,7 +188,7 @@ const UpdateMembers = () => {
                   <>
                     <td>{member.name}</td>
                     <td>{member.flat}</td>
-                    <td>{member.contact}</td>
+                    <td>{member.email}</td>
                     <td>
                       <button 
                         className="edit-btn" 

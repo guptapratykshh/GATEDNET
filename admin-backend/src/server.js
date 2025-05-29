@@ -22,12 +22,12 @@ app.use('/api/admin', adminRoutes);
 // Member, announcement, and reminder routes
 const memberRoutes = require('./routes/memberRoutes');
 const announcementRoute = require('./routes/anoncementRoute');
-const reminderRoutes = require('./routes/reminderRoutes');
+
 const taskRoutes = require('./routes/taskRoutes');
 
 app.use('/api/members', memberRoutes);
 app.use('/api/announcements', announcementRoute);
-app.use('/api/reminders', reminderRoutes);
+
 app.use('/api/tasks', taskRoutes);
 
 // Basic route
@@ -37,6 +37,9 @@ app.get('/', (req, res) => {
 
 const pollRoutes = require('./routes/pollRoutes');
 app.use('/api/polls', pollRoutes);
+
+const amenityRoutes = require('./routes/amenityRoutes');
+app.use('/api/amenities', amenityRoutes);
 
 const PORT = process.env.PORT || 7000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

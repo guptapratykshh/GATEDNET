@@ -40,14 +40,15 @@ body {
 
 /* Card Styling */
 .card {
-  background: #0F172A;
-  color: #e0e0e0;
+  background: #0D1726;
+  color: #ffffff;
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
   text-align: center;
   font-family: 'Segoe UI', sans-serif;
   transition: transform 0.3s ease;
+  border: 1px solid rgba(59, 130, 246, 0.15);
 }
 
 .card:hover {
@@ -57,6 +58,8 @@ body {
 .card h3 {
   margin-bottom: 12px;
   font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
 }
 
 .society-members-image {
@@ -69,7 +72,7 @@ body {
 /* Text inside card */
 .card p {
   margin: 6px 0;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.1rem;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -77,6 +80,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 6px;
+  color: #60a5fa;
+  text-decoration: none;
 }
 
 .card p:first-of-type {
@@ -95,33 +100,135 @@ body {
   color: #3b82f6;
 }
 
-/* Action Links */
+/* Button Containers */
+.action-container,
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+/* Poll button container - horizontal layout */
+.poll-button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+/* Action Links (used for Add/Update Members, View Announcements) */
 .action {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  font-weight: 600;
+  font-weight: 700;
   font-size: 1.1rem;
   cursor: pointer;
   margin: 6px 0;
   transition: color 0.3s ease;
-}
-
-.add-member {
-  color: #34d399;
-}
-
-.add-member:hover {
-  color: #10b981;
-}
-
-.update-member {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
   color: #60a5fa;
+  text-transform: none;
 }
 
-.update-member:hover {
+.action:hover {
   color: #3b82f6;
+  text-decoration: none;
+}
+
+/* Style for buttons directly inside cards */
+/* First row buttons (Active Votes and Maintenance) */
+.vote-button,
+.maintenance-btn,
+.poll-button {
+  background-color: #1E3A8A !important;
+  color: #93C5FD !important;
+  border: none !important;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.vote-button:hover,
+.maintenance-btn:hover,
+.poll-button:hover {
+  background-color: #172C6A !important;
+  color: #93C5FD !important;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.3);
+  text-decoration: none !important;
+}
+
+.vote-button:active,
+.maintenance-btn:active,
+.poll-button:active {
+  transform: translateY(-2px) scale(0.98);
+  transition: all 0.2s ease;
+}
+
+/* Second row buttons (text-only style) */
+.card button:not(.vote-button):not(.maintenance-btn):not(.poll-button) {
+  background: none !important;
+  color: #60a5fa !important;
+  border: none !important;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
+  text-transform: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.card button:not(.vote-button):not(.maintenance-btn):not(.poll-button):hover {
+  background: none !important;
+  color: #3b82f6 !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+.card button:not(.vote-button):not(.maintenance-btn):not(.poll-button):active {
+  transform: translateY(-1px) scale(0.98);
+  transition: all 0.2s ease;
+}
+
+/* Remove specific styles from vote-button that are now in the base style */
+.vote-button {
+  margin: auto;
+}
+
+/* Remove specific styles from poll-button that are now in the base style */
+.poll-button {
+  min-width: 150px;
 }
 
 /* Active Votes */
@@ -130,34 +237,12 @@ body {
   flex-wrap: wrap;
   gap: 0.75rem;
   justify-content: center;
-}
-
-.vote-button {
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 0.75rem 1rem;
-  font-size: 1.1rem;
-  cursor: pointer;
-  flex: 0 0 auto;
-  min-width: 120px;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.vote-button.create::before {
-  content: "+";
-  font-size: 1.5rem;
-  font-weight: 300;
-}
-
-.vote-button.view::before {
-  content: "✓";
-  font-size: 1.2rem;
+  background: #0D1726;
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  min-height: 120px;
 }
 
 /* Maintenance */
@@ -191,31 +276,69 @@ body {
   background-color: #10b981;
 }
 
+/* Button Wrapper */
 .maintenance-actions {
   display: flex;
-  gap: 0.4rem;
+  gap: 10px;
+  margin-top: 15px;
+  animation: fadeSlide 0.8s ease-out both;
+  align-items: center;
+  justify-content: center;
 }
 
-.action-button {
-  background-color: #3b82f6;
+/* Buttons */
+.add-btn,
+.update-btn,
+.view-btn {
+  background-color: #2563eb;
   color: white;
   border: none;
-  border-radius: 4px;
-  padding: 0.4rem 0.8rem;
-  cursor: pointer;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  width: 120px;
+  height: 40px;
+  text-align: center;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  justify-content: center;
+  gap: 5px;
+  flex-shrink: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(0) scale(1);
+  position: relative;
+  overflow: hidden;
 }
 
-.action-button::before {
-  content: "+";
+.add-btn:hover,
+.update-btn:hover,
+.view-btn:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.2);
+}
+
+.add-btn:active,
+.update-btn:active,
+.view-btn:active {
+  transform: translateY(-2px) scale(0.98);
+  transition: all 0.2s ease;
+}
+
+/* Ensure icons have consistent size and spacing */
+.add-btn svg,
+.update-btn svg,
+.view-btn svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
 }
 
 /* Bottom Section Cards */
 .bottom-section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, min-max(220px, 1fr));
   gap: 1rem;
   grid-column: 1 / -1;
 }
@@ -250,18 +373,64 @@ body {
   height: 48px;
 }
 
+/* Style for the 'See all bookings' and similar links */
 .card-link {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
   color: #60a5fa;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
+  margin: 6px 0;
+  transition: color 0.3s ease, transform 0.3s ease-in-out;
+  text-decoration: none;
+  gap: 6px;
+  background: none;
+  text-transform: none;
 }
 
 .card-link:hover {
-  text-decoration: underline;
+  color: #3b82f6;
+  text-decoration: none;
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Explicitly remove button styles for .action within cards if they are buttons */
+.card button.action {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  color: #60a5fa !important;
+  font-weight: 600;
+  text-transform: none;
+  transition: color 0.3s ease;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.card button.action:hover {
+   color: #3b82f6 !important;
+   text-decoration: none !important;
+   transform: none !important;
+   box-shadow: none !important;
+}
+
+/* Explicitly remove button styles for .card-link within cards if they are buttons */
+.card button.card-link {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  color: #60a5fa !important;
+  font-weight: 600;
+  text-transform: none;
+  transition: color 0.3s ease, transform 0.3s ease-in-out;
+}
+
+.card button.card-link:hover {
+   color: #3b82f6 !important;
+   text-decoration: none !important;
+   transform: translateY(-2px) scale(1.02);
 }
 
 /* Responsive Adjustments */
@@ -285,14 +454,15 @@ body {
   }
 }
 .maintenance-dashboard {
-  background: #0F172A;
-  color: #e0e0e0;
-  padding: 24px;
+  background: #1E3A8A;
+  color: #ffffff;
+  padding: 20px;
   border-radius: 16px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
   text-align: center;
-  animation: fadeSlide 0.6s ease-out both;
+  font-family: 'Segoe UI', sans-serif;
   transition: transform 0.3s ease;
+  border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
 .maintenance-dashboard:hover {
@@ -300,59 +470,9 @@ body {
 }
 
 .maintenance-title {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  color: #60a5fa;
-  font-weight: 600;
-}
-
-.maintenance-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-}
-
-.maintenance-btn {
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 0.75rem 1.25rem;
-  font-size: 1.1rem;
-  cursor: pointer;
-  width: 200px;
-  font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.maintenance-btn:hover {
-  background-color: #2563eb;
-  transform: translateY(-3px);
-}
-
-.add-btn {
-  background-color: #10b981;
-}
-
-.add-btn:hover {
-  background-color: #059669;
-}
-
-.update-btn {
-  background-color: #f59e0b;
-}
-
-.update-btn:hover {
-  background-color: #d97706;
-}
-
-.view-btn {
-  background-color: #60a5fa;
-}
-
-.view-btn:hover {
-  background-color: #3b82f6;
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+  color: #ffffff;
 }
 
 /* Animation Keyframes */
@@ -372,154 +492,29 @@ body {
   animation: fadeSlide 0.6s ease-out both;
 }
 
-/* Maintenance Dashboard Container */
-.maintenance-dashboard {
-  background: #0F172A;
-  color: #e0e0e0;
-  padding: 24px;
-  border-radius: 16px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  animation: fadeSlide 0.6s ease-out both;
-  transition: transform 0.3s ease;
+/* Add a subtle glow effect on hover */
+.card button::after,
+.vote-button::after,
+.maintenance-btn::after,
+.add-btn::after,
+.update-btn::after,
+.view-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
-.maintenance-dashboard:hover {
-  transform: scale(1.03);
-}
-
-/* Maintenance Title */
-.maintenance-title {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
-  color: #60a5fa;
-  font-weight: 600;
-  animation: fadeSlide 0.7s ease-out both;
-}
-
-/* Button Wrapper */
-.maintenance-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  align-items: center;
-  animation: fadeSlide 0.8s ease-out both;
-}
-
-/* Buttons */
-.maintenance-btn {
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  padding: 0.75rem 1.25rem;
-  font-size: 1.1rem;
-  cursor: pointer;
-  width: 200px;
-  font-weight: 600;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  animation: fadeSlide 0.9s ease-out both;
-}
-
-.maintenance-btn:hover {
-  transform: translateY(-3px);
-}
-
-.add-btn {
-  background-color: #10b981;
-}
-
-.add-btn:hover {
-  background-color: #059669;
-}
-
-.update-btn {
-  background-color: #f59e0b;
-}
-
-.update-btn:hover {
-  background-color: #d97706;
-}
-
-.view-btn {
-  background-color: #60a5fa;
-}
-
-.view-btn:hover {
-  background-color: #3b82f6;
-}
-
-/* Maintenance List */
-.maintenance-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  font-size: 1rem;
-  padding: 0.5rem 0;
-}
-
-/* Each Item in the List */
-.maintenance-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.4rem 0.6rem;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.05);
-  animation: fadeSlide 0.6s ease-out both;
-}
-
-/* Optional: staggered animation */
-.maintenance-item:nth-child(1) {
-  animation-delay: 0.2s;
-}
-.maintenance-item:nth-child(2) {
-  animation-delay: 0.3s;
-}
-.maintenance-item:nth-child(3) {
-  animation-delay: 0.4s;
-}
-.maintenance-item:nth-child(4) {
-  animation-delay: 0.5s;
-}
-/* ... add more as needed */
-
-/* Status Badges */
-.status-badge {
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-.status-badge.open {
-  background-color: #f59e0b;
-}
-
-.status-badge.resolved {
-  background-color: #10b981;
-}
-
-/* Task Action Buttons */
-.maintenance-actions {
-  display: flex;
-  gap: 0.4rem;
-}
-
-.action-button {
-  background-color: #3b82f6;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 0.4rem 0.8rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  animation: fadeSlide 0.6s ease-out both;
-  transition: background-color 0.3s ease;
-}
-
-.action-button::before {
-  content: "+";
+.card button:hover::after,
+.vote-button:hover::after,
+.maintenance-btn:hover::after,
+.add-btn:hover::after,
+.update-btn:hover::after,
+.view-btn:hover::after {
+  opacity: 1;
 }

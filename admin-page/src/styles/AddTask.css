@@ -1,0 +1,127 @@
+.add-task-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 30px;
+  background-color: #0d1726; /* Dark background from screenshot */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white; /* Default text color */
+}
+
+.add-task-container h2 {
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+}
+
+.add-task-container .form-group {
+  margin-bottom: 20px;
+}
+
+.add-task-container label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: white;
+}
+
+.add-task-container .form-control {
+  width: 100%;
+  padding: 14px 16px; /* Padding from screenshot */
+  background-color: #1A2E45; /* Input background from screenshot */
+  color: #e0e9f5; /* Light text color for input values */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Slightly rounded corners */
+  box-sizing: border-box; /* Include padding in width */
+  font-size: 1rem;
+}
+
+.add-task-container .form-control::placeholder {
+  color: rgba(224, 233, 245, 0.7); /* Lighter placeholder text */
+}
+
+.add-task-container .form-control:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 3px rgba(79, 128, 255, 0.3); /* Blue glowing effect on focus */
+}
+
+.add-task-container textarea.form-control {
+  min-height: 120px; /* Give description more height */
+  resize: vertical; /* Allow vertical resizing */
+}
+
+/* Styling for select dropdowns */
+.add-task-container select.form-control {
+  appearance: none; /* Remove default dropdown arrow */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.362%22%20height%3D%22292.362%22%20viewBox%3D%220%200%20292.362%20292.362%22%3E%3Cpath%20fill%3D%22%23e0e9f5%22%20d%3D%22M287.926%2073.395c-3.614-3.614-7.989-5.423-12.984-5.423H17.417c-4.995%200-9.37%201.809-12.984%205.423-7.228%207.229-7.228%2018.964%200%2026.19l132.861%20132.861c3.614%203.614%207.989%205.423%2012.984%205.423s9.37-1.809%2012.984-5.423l132.861-132.861c7.228-7.228%207.228-18.964-.001-26.19z%22%2F%3E%3C%2Fsvg%3E'); /* Custom dropdown arrow */
+  background-repeat: no-repeat;
+  background-position: right 16px top 50%;
+  background-size: 12px auto;
+  padding-right: 40px; /* Make space for the arrow */
+}
+
+/* Add Task Button Style (using previous button style) */
+.add-task-container .btn-primary {
+  display: inline-block;
+  background: #345fd6; /* Dark navy blue background */
+  color: white; /* White text color */
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.add-task-container .btn-primary:hover {
+  background: #2a4988; /* Slightly lighter blue on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover */
+  transform: translateY(-2px); /* Subtle lift on hover */
+}
+
+.add-task-container .btn-primary:active {
+  background: #0f2b6a; /* Slightly darker blue on active */
+  transform: translateY(0); /* Press down effect */
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); /* Smaller shadow on active */
+}
+
+.add-task-container .btn-primary:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Go to View Tasks Button Style */
+.add-task-container .btn-secondary {
+  display: inline-block;
+  background: #1E3A8A; /* Dark navy blue background */
+  color: white; /* White text color */
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.add-task-container .btn-secondary:hover {
+  background: #2a4988; /* Slightly lighter blue on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15); /* Slightly larger shadow on hover */
+  transform: translateY(-2px); /* Subtle lift on hover */
+}
+
+.add-task-container .btn-secondary:active {
+  background: #0f2b6a; /* Slightly darker blue on active */
+  transform: translateY(0); /* Press down effect */
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); /* Smaller shadow on active */
+}
+
+.add-task-container .btn-secondary:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+} 

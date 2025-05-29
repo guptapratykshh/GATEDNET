@@ -77,27 +77,8 @@ const Navigation = () => {
             label: 'Amenities',
             children: [
                 {
-                    key: '/booked-amenities',
-                    label: 'Book Amenities'
-                },
-                {
                     key: '/view-booked-amenities',
                     label: 'View Bookings'
-                }
-            ]
-        },
-        {
-            key: 'reminders',
-            icon: <CalendarOutlined />,
-            label: 'Reminders',
-            children: [
-                {
-                    key: '/reminders',
-                    label: 'View Reminders'
-                },
-                {
-                    key: '/add-reminder',
-                    label: 'Add Reminder'
                 }
             ]
         },
@@ -106,10 +87,6 @@ const Navigation = () => {
             icon: <ToolOutlined />,
             label: 'Maintenance',
             children: [
-                {
-                    key: '/maintenance-updates',
-                    label: 'Maintenance Updates'
-                },
                 {
                     key: '/maintenance-updates/add-task',
                     label: 'Add Task'
@@ -123,11 +100,6 @@ const Navigation = () => {
                     label: 'View Tasks'
                 }
             ]
-        },
-        {
-            key: '/tasks',
-            icon: <CheckSquareOutlined />,
-            label: 'Task Management'
         }
     ];
 

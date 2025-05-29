@@ -27,18 +27,11 @@ import PollResults from './pages/PollResults';
 import BookedAmenities from './components/BookedAmenities';
 import ViewBookedAmenities from './pages/ViewBookedAmenities';
 
-// 🔔 Reminder Feature
-import AddReminder from './pages/AddReminder';
-import Reminder from './components/Reminders';
-
 // 🛠️ Maintenance Feature
 import MaintenanceUpdates from './pages/MaintenanceUpdates'; // main page with buttons
 import AddTask from './pages/AddTask';
 import UpdateTask from './pages/UpdateTask';
 import ViewTasks from './pages/ViewTasks';
-
-// 📋 Task Management
-import Tasks from './pages/Tasks';
 
 // Seed demo data for Bookings and Tasks if not present
 const seedDemoData = () => {
@@ -106,12 +99,27 @@ const App = () => {
     seedDemoData();
     const token = localStorage.getItem('admin_id_token');
     setIsAuthenticated(!!token);
-  }, []);
+  }, []); // Empty dependency array means this runs once on mount
+
+  // To update isAuthenticated when localStorage changes (e.g., logout)
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const token = localStorage.getItem('admin_id_token');
+      setIsAuthenticated(!!token);
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []); // Listen for storage changes across tabs/windows
 
   return (
     <Router>
       <Layout style={{ minHeight: '100vh' }}>
-        {isAuthenticated && <Header />}
+        {/* Conditionally render Header and Sider based on isAuthenticated state */}
+        {isAuthenticated && <Header setIsAuthenticated={setIsAuthenticated} />}
         <Layout>
           {isAuthenticated && (
             <Sider width={200} theme="dark">
@@ -123,7 +131,7 @@ const App = () => {
               <Routes>
                 {/* Auth Routes */}
                 <Route path="/" element={<Navigate to="/admin/login" />} />
-                <Route path="/admin/login" element={<AdminLogin />} />
+                <Route path="/admin/login" element={<AdminLogin setIsAuthenticated={setIsAuthenticated} />} />
                 <Route path="/admin/signup" element={<AdminSignup />} />
 
                 {/* Protected Routes */}
@@ -186,18 +194,6 @@ const App = () => {
                   </RequireAuth>
                 } />
 
-                {/* 🔔 Reminders */}
-                <Route path="/reminders" element={
-                  <RequireAuth>
-                    <Reminder />
-                  </RequireAuth>
-                } />
-                <Route path="/add-reminder" element={
-                  <RequireAuth>
-                    <AddReminder />
-                  </RequireAuth>
-                } />
-
                 {/* 🛠️ Maintenance Updates */}
                 <Route path="/maintenance-updates" element={
                   <RequireAuth>
@@ -217,13 +213,6 @@ const App = () => {
                 <Route path="/maintenance-updates/view-tasks" element={
                   <RequireAuth>
                     <ViewTasks />
-                  </RequireAuth>
-                } />
-
-                {/* 📋 Task Management */}
-                <Route path="/tasks" element={
-                  <RequireAuth>
-                    <Tasks />
                   </RequireAuth>
                 } />
               </Routes>

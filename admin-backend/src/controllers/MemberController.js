@@ -3,8 +3,8 @@ const Member = require('../models/Member');
 // Add a new member
 exports.addMember = async (req, res) => {
   try {
-    const { name, flat, contact } = req.body;
-    const member = new Member({ name, flat, contact });
+    const { email, flat, name } = req.body;
+    const member = new Member({ email, flat, name });
     await member.save();
     res.status(201).json({ message: 'Member added', member });
   } catch (error) {
@@ -41,10 +41,10 @@ exports.getMemberById = async (req, res) => {
 // Update member
 exports.updateMember = async (req, res) => {
   try {
-    const { name, flat, contact } = req.body;
+    const { email, flat, name } = req.body;
     const member = await Member.findByIdAndUpdate(
       req.params.id, 
-      { name, flat, contact },
+      { email, flat, name },
       { new: true }
     );
     

@@ -1,51 +1,44 @@
-import { signInWithCustomToken } from "firebase/auth";
+import { getAuth, signInWithCustomToken } from 'firebase/auth';
 import { auth } from "./firebase"; // your firebase config
 
-export async function getIdTokenFromCustomToken(token) {
-  if (!token) {
-    console.error("No token provided to getIdTokenFromCustomToken");
-    throw new Error("Invalid token: No token provided");
-  }
-
+// Function to refresh the Firebase ID token
+export const refreshToken = async () => {
   try {
-    console.log("Attempting to sign in with custom token...");
+    const auth = getAuth();
+    const currentUser = auth.currentUser;
     
-    // Ensure the token is properly formatted
-    const formattedToken = token.trim();
-    if (!formattedToken) {
-      throw new Error("Invalid token format");
+    if (currentUser) {
+      const newToken = await currentUser.getIdToken(true);
+      localStorage.setItem('admin_id_token', newToken);
+      return newToken;
     }
     
-    const userCredential = await signInWithCustomToken(auth, formattedToken);
-    console.log("Successfully signed in with custom token");
+    // If no current user, try to get the custom token from localStorage
+    const customToken = localStorage.getItem('admin_custom_token');
+    if (customToken) {
+      const userCredential = await signInWithCustomToken(auth, customToken);
+      const newToken = await userCredential.user.getIdToken();
+      localStorage.setItem('admin_id_token', newToken);
+      return newToken;
+    }
     
-    // Force token refresh to ensure we have the latest token
-    await userCredential.user.getIdToken(true);
+    throw new Error('No valid token found');
+  } catch (error) {
+    console.error('Error refreshing token:', error);
+    throw error;
+  }
+};
+
+// Function to get ID token from custom token
+export const getIdTokenFromCustomToken = async (customToken) => {
+  try {
+    const auth = getAuth();
+    const userCredential = await signInWithCustomToken(auth, customToken);
     const idToken = await userCredential.user.getIdToken();
-    console.log("Successfully obtained ID token");
-    
+    localStorage.setItem('admin_custom_token', customToken); // Store custom token for future refresh
     return idToken;
   } catch (error) {
-    console.error("Firebase authentication error:", {
-      code: error.code,
-      message: error.message,
-      fullError: error
-    });
-    
-    // Provide more specific error messages based on the error code
-    switch (error.code) {
-      case 'auth/invalid-custom-token':
-        throw new Error("Invalid authentication token. Please try logging in again.");
-      case 'auth/custom-token-mismatch':
-        throw new Error("Authentication token mismatch. Please try logging in again.");
-      case 'auth/network-request-failed':
-        throw new Error("Network error. Please check your internet connection.");
-      case 'auth/user-disabled':
-        throw new Error("This account has been disabled. Please contact support.");
-      case 'auth/user-not-found':
-        throw new Error("Invalid email or password.");
-      default:
-        throw new Error(`Authentication failed: ${error.message}`);
-    }
+    console.error('Error getting ID token:', error);
+    throw error;
   }
-}
+};

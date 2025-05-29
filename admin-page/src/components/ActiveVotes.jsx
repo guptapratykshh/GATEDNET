@@ -6,7 +6,7 @@ const ActiveVotes = () => {
   return (
     <div className="card">
       <h3>ACTIVE VOTES</h3>
-      <div className="button-container">
+      <div className="poll-button-container">
         <button className="poll-button" onClick={() => navigate('/create-poll')}>
           ➕<br />Create a new poll
         </button>
@@ -17,4 +17,5 @@ const ActiveVotes = () => {
     </div>
   );
 };
+
 export default ActiveVotes;

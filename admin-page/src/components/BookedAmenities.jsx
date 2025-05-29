@@ -14,7 +14,7 @@ const BookedAmenities = () => {
     <div className="card">
       <h3>BOOKED AMENITIES</h3>
       <img src={bookedAmenitiesImage} alt="Booked Amenities" className="booked-amenities-image" />
-      <button onClick={handleClick}>🗓️ SEE ALL BOOKINGS</button>
+      <button onClick={handleClick}>🗓️ <strong>See All Bookings</strong></button>
     </div>
   );
 };

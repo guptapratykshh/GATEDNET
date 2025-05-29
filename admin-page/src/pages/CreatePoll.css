@@ -234,32 +234,6 @@
   transform: rotate(90deg);
 }
 
-/* Poll Settings container */
-.poll-settings {
-  background: linear-gradient(145deg, #1e2638, #2a3649);
-  padding: 30px;
-  border-radius: 16px;
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  margin: 20px 0;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.settings-label {
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 20px;
-  opacity: 0.9;
-}
-
-.radio-group {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 4px 0;
-}
-
 /* Submit button text */
 .submit-btn {
   background: #2563eb;
