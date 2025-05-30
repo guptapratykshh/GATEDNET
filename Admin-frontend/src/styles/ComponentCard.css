@@ -40,7 +40,7 @@ body {
 
 /* Card Styling */
 .card {
-  background: #0F172A;
+  background: #031936 !important;
   color: #e0e0e0;
   padding: 20px;
   border-radius: 16px;
@@ -77,6 +77,11 @@ body {
   align-items: center;
   justify-content: center;
   gap: 6px;
+  color: #60a5fa !important;
+}
+
+.card p:hover {
+  color: #3b82f6 !important;
 }
 
 .card p:first-of-type {
@@ -124,12 +129,41 @@ body {
   color: #3b82f6;
 }
 
+/* Style for the 'See All Bookings' button */
+.see-all-bookings-btn {
+    background: none;
+    border: none;
+    color: #60a5fa !important; /* Set text color to blue */
+    padding: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 10px; /* Add some space above the button */
+}
+
+.see-all-bookings-btn:hover {
+    color: #3b82f6 !important; /* Darker blue on hover */
+    text-decoration: underline; /* Underline on hover for better indication */
+}
+
 /* Active Votes */
 .active-votes-container {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   justify-content: center;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .vote-button {
@@ -193,7 +227,11 @@ body {
 
 .maintenance-actions {
   display: flex;
-  gap: 0.4rem;
+  flex-direction: row !important;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  animation: fadeSlide 0.8s ease-out both;
 }
 
 .action-button {
@@ -285,7 +323,7 @@ body {
   }
 }
 .maintenance-dashboard {
-  background: #0F172A;
+  background: #031936 !important;
   color: #e0e0e0;
   padding: 24px;
   border-radius: 16px;
@@ -374,7 +412,7 @@ body {
 
 /* Maintenance Dashboard Container */
 .maintenance-dashboard {
-  background: #0F172A;
+  background: #031936 !important;
   color: #e0e0e0;
   padding: 24px;
   border-radius: 16px;
@@ -400,9 +438,10 @@ body {
 /* Button Wrapper */
 .maintenance-actions {
   display: flex;
-  flex-direction: column;
+  flex-direction: row !important;
   gap: 1rem;
   align-items: center;
+  justify-content: center;
   animation: fadeSlide 0.8s ease-out both;
 }
 

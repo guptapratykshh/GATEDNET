@@ -1,0 +1,51 @@
+/* Styles for ViewTasks page */
+.maintenance-container {
+  max-width: 900px;
+  margin: 40px auto;
+  background-color: white !important;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #333 !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.maintenance-heading {
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  text-align: center;
+  color: #2c3e50 !important;
+}
+
+/* Adjust text colors for readability on white background */
+.maintenance-container label, 
+.maintenance-container p, 
+.maintenance-container span, 
+.maintenance-container div, 
+.maintenance-container h3, 
+.maintenance-container h4, 
+.maintenance-container table, 
+.maintenance-container th, 
+.maintenance-container td {
+  color: #333 !important;
+}
+
+/* Specific adjustments for elements that might have inherited colors */
+.maintenance-container .task-list-item {
+    background-color: #031936 !important; /* Keep task item dark blue as requested previously */
+    color: #e0e0e0 !important; /* Task item text color on dark background */
+}
+
+.maintenance-container .task-list-item .task-status {
+    color: #94a3b8 !important; /* Status text color on dark background */
+}
+
+.maintenance-container .task-list-item h3 {
+    color: #60a5fa !important; /* Task item heading color */
+}
+
+/* Adjust placeholder color for inputs in this container */
+.maintenance-container .form-control::placeholder {
+    color: #6c757d !important;
+} 

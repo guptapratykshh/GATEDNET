@@ -1,5 +1,5 @@
 const admin = require('firebase-admin');
-const serviceAccount = require('./gatenet-a1199-firebase-adminsdk-fbsvc-7b7eb61cf8.json');
+const serviceAccount = require('./gatenet-a1199-firebase-adminsdk-fbsvc-7b7eb61cf8.json')
 
 // Validate service account
 if (!serviceAccount.project_id || !serviceAccount.private_key || !serviceAccount.client_email) {

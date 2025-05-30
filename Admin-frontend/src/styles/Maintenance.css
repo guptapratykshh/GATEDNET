@@ -2,11 +2,11 @@
 .maintenance-container {
   max-width: 900px;
   margin: 40px auto;
-  background-color: #fdfdfd;
+  background-color: #031936 !important; /* Set background color to dark blue */
   padding: 30px;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  color: #333;
+  color: #e0e0e0 !important; /* Adjust text color for dark background */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -15,7 +15,7 @@
   margin-bottom: 20px;
   font-weight: 700;
   text-align: center;
-  color: #2c3e50;
+  color: #60a5fa !important; /* Adjust heading color for dark background */
 }
 
 /* Form Styling */
@@ -27,6 +27,7 @@
   display: block;
   font-weight: 600;
   margin-bottom: 8px;
+  color: #e0e0e0 !important;
 }
 
 .form-control {
@@ -36,11 +37,19 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   transition: border-color 0.3s, box-shadow 0.3s;
+  background-color: #1f2937 !important;
+  color: #e0e0e0 !important;
+}
+
+/* Placeholder text color */
+.form-control::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1;
 }
 
 .form-control:focus {
-  border-color: #3498db;
-  box-shadow: 0 0 8px rgba(52, 152, 219, 0.4);
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 8px rgba(96, 165, 250, 0.25) !important;
   outline: none;
 }
 
@@ -56,13 +65,48 @@
 }
 
 .btn-primary {
-  background-color: #3498db;
-  color: #fff;
+  background-color: #60a5fa !important;
+  color: #fff !important;
 }
 
 .btn-primary:hover {
-  background-color: #2980b9;
+  background-color: #3b82f6 !important;
   transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: #4b5563 !important;
+  color: #e0e0e0 !important;
+}
+
+.btn-secondary:hover {
+  background-color: #374151 !important;
+}
+
+/* Style for Delete Task Button */
+.delete-task-button {
+  background-color: #dc3545 !important; /* Red color for delete */
+  color: white !important;
+  border: none;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  cursor: pointer;
+  font-size: 1rem !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+.delete-task-button:hover {
+  background-color: #c82333 !important; /* Darker red on hover */
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.delete-task-button:active {
+  background-color: #bd2130 !important; /* Even darker red when active */
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
 }
 
 /* Table Styling */
@@ -71,8 +115,8 @@
   border-collapse: collapse;
   margin-top: 20px;
   font-size: 16px;
-  color: #333;
-  background-color: #fff;
+  color: #e0e0e0 !important; /* Table text color on dark background */
+  background-color: #1f2937 !important; /* Table background on dark background */
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -81,68 +125,79 @@
 .maintenance-table th,
 .maintenance-table td {
   padding: 14px 18px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #4b5563 !important; /* Darker border */
   text-align: left;
 }
 
 .maintenance-table th {
-  background-color: #f7f9fa;
+  background-color: #374151 !important; /* Darker table header */
   font-weight: 700;
-  color: #2c3e50;
+  color: #e0e0e0 !important;
+}
+
+.maintenance-table tr {
+  background-color: #1f2937 !important; /* Ensure rows have dark background */
 }
 
 .maintenance-table tr:hover {
-  background-color: #f0f8ff;
-  transition: background-color 0.3s ease;
+  background-color: rgba(96, 165, 250, 0.1) !important;
 }
 
 .maintenance-table select {
   padding: 8px 10px;
   font-size: 15px;
   border-radius: 6px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  color: #333;
+  border: 1px solid #4b5563 !important;
+  background-color: #1f2937 !important;
+  color: #e0e0e0 !important;
 }
 
-/* Task List Styling */
+/* Specific styling for Update Tasks select to match screenshot */
+.maintenance-table .update-status-select {
+  background-color: #031936 !important;
+  color: #e0e0e0 !important;
+  border: 1px solid #60a5fa !important;
+}
+
+/* Task List Styling (for View Tasks) */
 .task-list-item {
-  background-color: #ffffff;
+  background-color: #031936 !important; /* Set task item background to dark blue */
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 12px;
-  border-left: 6px solid #3498db;
+  border-left: 6px solid #60a5fa !important; /* Blue left border for accent */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease, box-shadow 0.3s ease;
+  color: #e0e0e0 !important; /* Task item text color on dark background */
 }
 
 .task-list-item:hover {
   transform: scale(1.02);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2) !important;
 }
 
 .task-status {
   font-weight: 600;
-  color: #555;
+  color: #94a3b8 !important; /* Status text color on dark background */
   margin-top: 8px;
 }
 
-/* Status Color Coding (Optional Enhancement) */
+/* Status Color Coding (Optional Enhancement) - Adjusted colors for dark background */
 .task-status::before {
   content: '⬤ ';
   font-size: 14px;
 }
 
 .task-status:contains("open")::before {
-  color: orange;
+  color: #f59e0b !important;
 }
 
 .task-status:contains("in-progress")::before {
-  color: royalblue;
+  color: #60a5fa !important;
 }
 
 .task-status:contains("resolved")::before {
-  color: green;
+  color: #34d399 !important;
 }
 
 /* Responsive Enhancements */
@@ -164,4 +219,10 @@
   .maintenance-table td {
     padding: 10px 12px;
   }
+}
+
+/* Poll Result Card Specific Styling (assuming a class for the graph container) */
+.poll-result-graph-card .chart-text {
+  font-weight: bold !important;
+  color: #ffffff !important; /* Pure white text */
 }

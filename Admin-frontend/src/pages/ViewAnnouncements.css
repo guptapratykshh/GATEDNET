@@ -2,6 +2,8 @@
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  background-color: white !important;
+  color: #333 !important;
 }
 
 .announcements-header {
@@ -9,6 +11,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+  color: #2c3e50 !important;
 }
 
 .add-new-btn {
@@ -46,28 +49,29 @@
 .no-announcements {
   text-align: center;
   padding: 40px;
-  background-color: #f8f9fa;
+  background-color: #f8f9fa !important;
   border-radius: 8px;
-  color: #6c757d;
+  color: #333 !important;
   margin-top: 20px;
 }
 
 .announcements-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
 }
 
 .announcement-card {
-  background-color: white;
+  background-color: #031936 !important;
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
+  color: #e0e0e0 !important;
 }
 
 .announcement-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-5px);
 }
 
 .announcement-header {
@@ -80,7 +84,7 @@
 .announcement-header h3 {
   margin: 0;
   font-size: 18px;
-  color: #212529;
+  color: #60a5fa !important;
 }
 
 .announcement-actions {
@@ -104,14 +108,14 @@
 }
 
 .announcement-message {
-  color: #495057;
+  color: #e0e0e0 !important;
   line-height: 1.5;
   margin-bottom: 16px;
   word-break: break-word;
 }
 
 .announcement-date {
-  color: #6c757d;
+  color: #94a3b8 !important;
   font-size: 12px;
   text-align: right;
 }
@@ -120,4 +124,54 @@
   .announcements-list {
     grid-template-columns: 1fr;
   }
+}
+
+/* Styles for the modal (if applicable to this page) */
+.modal-overlay {
+  /* ... existing code ... */
+}
+
+.modal-content {
+  /* ... existing code ... */
+}
+
+.modal-header {
+  /* ... existing code ... */
+}
+
+.modal-body {
+  /* ... existing code ... */
+}
+
+.modal-footer {
+  /* ... existing code ... */
+}
+
+.modal-footer button {
+  /* ... existing code ... */
+}
+
+.modal-footer button:hover {
+  /* ... existing code ... */
+}
+
+/* Edit and Delete Buttons */
+.action-buttons {
+  /* ... existing code ... */
+}
+
+.edit-button {
+  /* ... existing code ... */
+}
+
+.edit-button:hover {
+  /* ... existing code ... */
+}
+
+.delete-button {
+  /* ... existing code ... */
+}
+
+.delete-button:hover {
+  /* ... existing code ... */
 } 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Layout } from 'antd';
 import Header from './components/Header';
 import Navigation from './components/Navigation';
@@ -92,21 +92,33 @@ const RequireAuth = ({ children }) => {
 
 const { Content, Sider } = Layout;
 
-const App = () => {
+// New AppContent component that uses useLocation
+const AppContent = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const location = useLocation();
 
-  useEffect(() => {
-    seedDemoData();
+  // Function to check authentication status
+  const checkAuth = () => {
     const token = localStorage.getItem('admin_id_token');
     setIsAuthenticated(!!token);
-  }, []);
+  };
+
+  // Check auth on mount and when location changes
+  useEffect(() => {
+    checkAuth();
+    // Listen for storage changes (in case token is set/removed in another tab)
+    window.addEventListener('storage', checkAuth);
+    return () => window.removeEventListener('storage', checkAuth);
+  }, [location]);
+
+  // Check if the current route is an auth page
+  const isAuthPage = location.pathname === '/admin/login' || location.pathname === '/admin/signup';
 
   return (
-    <Router>
       <Layout style={{ minHeight: '100vh' }}>
-        {isAuthenticated && <Header />}
+      {isAuthenticated && !isAuthPage && <Header />}
         <Layout>
-          {isAuthenticated && (
+        {isAuthenticated && !isAuthPage && (
             <Sider width={200} theme="dark">
               <Navigation />
             </Sider>
@@ -205,6 +217,14 @@ const App = () => {
           </Layout>
         </Layout>
       </Layout>
+  );
+};
+
+// Main App component that provides the Router
+const App = () => {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 };

@@ -24,16 +24,26 @@
 }
 
 .logout-btn {
-  background-color: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  padding: 5px 12px;
-  border-radius: 4px;
+  background-color: #dc3545 !important; /* Red background for logout */
+  border: none !important; /* Remove border */
+  color: white !important; /* White text */
+  padding: 8px 16px !important; /* Increased padding */
+  border-radius: 6px !important; /* Slightly larger border radius */
   cursor: pointer;
-  font-size: 0.875rem;
-  transition: background-color 0.2s;
+  font-size: 1rem !important; /* Increased font size */
+  transition: background-color 0.3s ease, transform 0.2s ease !important; /* Added transform transition */
+  font-weight: 600 !important; /* Bold text */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important; /* Added subtle shadow */
 }
 
 .logout-btn:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: #c82333 !important; /* Darker red on hover */
+  transform: translateY(-2px) !important; /* Slight upward movement on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important; /* Larger shadow on hover */
+}
+
+.logout-btn:active {
+    background-color: #bd2130 !important; /* Even darker red when active */
+    transform: translateY(0) !important; /* Reset transform when active */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important; /* Reset shadow when active */
 } 

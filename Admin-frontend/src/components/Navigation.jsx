@@ -1,129 +1,108 @@
-import React from 'react';
-import { Menu } from 'antd';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import {
-    DashboardOutlined,
+  HomeOutlined, 
     TeamOutlined,
     BellOutlined,
+  BarChartOutlined,
+  ToolOutlined,
     CalendarOutlined,
-    ToolOutlined,
-    CheckSquareOutlined,
-    HomeOutlined,
-    BarChartOutlined
+  FileTextOutlined,
+  SettingOutlined,
+  CaretDownOutlined,
+  CaretUpOutlined
 } from '@ant-design/icons';
+import './Navigation.css';
 
 const Navigation = () => {
-    const navigate = useNavigate();
     const location = useLocation();
+  const [expandedItem, setExpandedItem] = useState(null);
 
-    const menuItems = [
+  const navItems = [
+    { path: '/dashboard', icon: <HomeOutlined />, label: 'Dashboard' },
         {
-            key: '/dashboard',
-            icon: <DashboardOutlined />,
-            label: 'Dashboard'
-        },
-        {
-            key: 'member',
-            icon: <TeamOutlined />,
-            label: 'Member Management',
-            children: [
-                {
-                    key: '/add-member',
-                    label: 'Add Member'
-                },
-                {
-                    key: '/update-members',
-                    label: 'Update Members'
-                },
-                {
-                    key: '/download-excel',
-                    label: 'Download Excel'
-                }
+      label: 'Member Management', icon: <TeamOutlined />, children: [
+        { path: '/add-member', label: 'Add Member' },
+        { path: '/update-members', label: 'Update Members' },
+        { path: '/download-excel', label: 'Download Excel' }
             ]
         },
         {
-            key: 'announcements',
-            icon: <BellOutlined />,
-            label: 'Announcements',
-            children: [
-                {
-                    key: '/announcements',
-                    label: 'View Announcements'
-                },
-                {
-                    key: '/add-announcement',
-                    label: 'Add Announcement'
-                }
+      label: 'Announcements', icon: <BellOutlined />, children: [
+        { path: '/add-announcement', label: 'Add Announcement' },
+        { path: '/announcements', label: 'View Announcements' }
             ]
         },
         {
-            key: 'polls',
-            icon: <BarChartOutlined />,
-            label: 'Polls',
-            children: [
-                {
-                    key: '/create-poll',
-                    label: 'Create Poll'
-                },
-                {
-                    key: '/poll-results',
-                    label: 'Poll Results'
-                }
+      label: 'Active Votes', icon: <BarChartOutlined />, children: [
+        { path: '/create-poll', label: 'Create Poll' },
+        { path: '/poll-results', label: 'Poll Results' }
             ]
         },
         {
-            key: 'amenities',
-            icon: <HomeOutlined />,
-            label: 'Amenities',
-            children: [
-                {
-                    key: '/booked-amenities',
-                    label: 'Book Amenities'
-                },
-                {
-                    key: '/view-booked-amenities',
-                    label: 'View Bookings'
-                }
+      label: 'Amenities', icon: <CalendarOutlined />, children: [
+        { path: '/view-booked-amenities', label: 'View Bookings' }
             ]
         },
         {
-            key: 'maintenance',
-            icon: <ToolOutlined />,
-            label: 'Maintenance',
-            children: [
-                {
-                    key: '/maintenance-updates',
-                    label: 'Maintenance Updates'
+      label: 'Maintenance Updates', icon: <ToolOutlined />, children: [
+        { path: '/maintenance-updates/add-task', label: 'Add Task' },
+        { path: '/maintenance-updates/view-tasks', label: 'View Tasks' },
+        { path: '/maintenance-updates/update-task', label: 'Update Task' }
+      ]
                 },
-                {
-                    key: '/maintenance-updates/add-task',
-                    label: 'Add Task'
-                },
-                {
-                    key: '/maintenance-updates/update-task',
-                    label: 'Update Task'
-                },
-                {
-                    key: '/maintenance-updates/view-tasks',
-                    label: 'View Tasks'
-                }
-            ]
-        }
     ];
 
-    const handleMenuClick = ({ key }) => {
-        navigate(key);
+  const handleItemClick = (item) => {
+    if (item.children) {
+      setExpandedItem(expandedItem === item.label ? null : item.label);
+    }
     };
 
     return (
-        <Menu
-            theme="dark"
-            mode="inline"
-            selectedKeys={[location.pathname]}
-            items={menuItems}
-            onClick={handleMenuClick}
-            style={{ height: '100%' }}
-        />
+    <nav className="navigation">
+      <ul className="nav-menu">
+        {navItems.map((item) => (
+          <li key={item.path || item.label} className="nav-item">
+            {item.children ? (
+              <div 
+                className={`nav-link ${expandedItem === item.label ? 'active' : ''}`}
+                onClick={() => handleItemClick(item)}
+                style={{ cursor: 'pointer' }}
+              >
+                <span className="nav-icon">{item.icon}</span>
+                {item.label}
+                <span className="expand-icon">
+                  {expandedItem === item.label ? <CaretUpOutlined /> : <CaretDownOutlined />}
+                </span>
+              </div>
+            ) : (
+              <Link
+                to={item.path}
+                className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+              >
+                <span className="nav-icon">{item.icon}</span>
+                {item.label}
+              </Link>
+            )}
+            {item.children && expandedItem === item.label && (
+              <ul className="submenu">
+                {item.children.map((child) => (
+                  <li key={child.path} className="submenu-item">
+                    <Link
+                      to={child.path}
+                      className={`submenu-link ${location.pathname === child.path ? 'active' : ''}`}
+                    >
+                      {child.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+    </nav>
     );
 };
 

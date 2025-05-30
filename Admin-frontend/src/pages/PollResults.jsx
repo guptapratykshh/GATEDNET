@@ -152,7 +152,7 @@ const PollResults = () => {
               {
                 label: 'Number of Votes',
                 data: votes,
-                backgroundColor: ['#4CAF50', '#F44336', '#2196F3', '#FF9800', '#9C27B0', '#607D8B'],
+                backgroundColor: ['#60a5fa'],
                 borderWidth: 1,
               },
             ],

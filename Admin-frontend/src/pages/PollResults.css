@@ -78,6 +78,7 @@
 .poll-card:hover {
   transform: translateY(-8px) scale(1.01);
   box-shadow: var(--hover-shadow);
+  z-index: 1;
 }
 
 .poll-card:hover::before {
@@ -655,11 +656,14 @@
 
 .poll-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 12px;
   margin-top: 20px;
   padding-top: 20px;
   border-top: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 2;
+  flex-wrap: wrap;
 }
 
 .close-btn, .delete-btn {
