@@ -31,12 +31,13 @@
 
 /* Each booking item */
 .booking-item {
-  background-color: #f9fafb;
+  background-color: #031936 !important;
   padding: 20px 24px;
   border-radius: 14px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease, box-shadow 0.3s ease;
   cursor: default;
+  color: #ffffff !important;
 }
 
 .booking-item:hover {
@@ -46,7 +47,7 @@
 
 /* Labels & values styling */
 .booking-item strong {
-  color: #374151;
+  color: #60a5fa !important;
   display: inline-block;
   min-width: 110px;
   font-weight: 600;
@@ -55,7 +56,11 @@
 .booking-detail {
   margin-bottom: 10px;
   font-size: 15px;
-  color: #031936 !important;
+  color: #ffffff !important;
+}
+
+.booking-details {
+    color: #ffffff !important;
 }
 
 /* Booking status badge */
@@ -143,4 +148,88 @@
   font-size: 1.1rem;
   color: #777;
   font-style: italic;
+}
+
+/* Edit and Delete Buttons */
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit-button {
+  background-color: #60a5fa;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.edit-button:hover {
+  background-color: #4b8bf5;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.edit-button:active {
+  background-color: #3a71d9;
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.delete-button:active {
+  background-color: #bd2130;
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for Delete Amenity Button */
+.delete-amenity-btn {
+  background-color: #dc3545 !important; /* Red color for delete */
+  color: white !important;
+  border: none;
+  padding: 8px 16px !important;
+  border-radius: 6px !important;
+  cursor: pointer;
+  font-size: 1rem !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  margin-top: 10px; /* Add some space above the button */
+}
+
+.delete-amenity-btn:hover {
+  background-color: #c82333 !important; /* Darker red on hover */
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+}
+
+.delete-amenity-btn:active {
+  background-color: #bd2130 !important; /* Even darker red when active */
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
 } 
