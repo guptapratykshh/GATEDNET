@@ -1,10 +1,16 @@
 const Member = require('../models/Member');
+const bcrypt = require('bcryptjs'); // Import bcrypt
 
 // Add a new member
 exports.addMember = async (req, res) => {
   try {
-    const { email, flat, name } = req.body;
-    const member = new Member({ email, flat, name });
+    const { email, flat, name, password } = req.body; // Destructure password
+
+    // Hash the password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const member = new Member({ email, flat, name, password: hashedPassword }); // Save hashed password
     await member.save();
     res.status(201).json({ message: 'Member added', member });
   } catch (error) {

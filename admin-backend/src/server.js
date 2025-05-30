@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const config = require('./config/config');
 const adminRoutes = require('./routes/adminRoutes');
+const amenityRoutes = require('./routes/amenityRoutes'); // Import amenity routes
 require('./firebase'); // Import Firebase initialization
 
 const app = express();
@@ -29,6 +30,9 @@ app.use('/api/members', memberRoutes);
 app.use('/api/announcements', announcementRoute);
 
 app.use('/api/tasks', taskRoutes);
+
+// Add amenity routes
+app.use('/api', amenityRoutes); // Use amenity routes under /api
 
 // Basic route
 app.get('/', (req, res) => {

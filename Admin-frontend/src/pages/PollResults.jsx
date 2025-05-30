@@ -141,18 +141,17 @@ const PollResults = () => {
             : (poll.options || []).map(opt => opt.text); // Ensure text is accessed correctly
           
           const votes = isApiFormat 
-            ? poll.options.map(opt => opt.votes.length) // Count votes from the array
+            ? poll.options.map(opt => opt.votes) // Use opt.votes directly as it's a number
             : (poll.votes || []); // Assuming localStorage stores total votes per option
           
           const total = votes.reduce((a, b) => a + b, 0) || 1;
-          const percentages = votes.map(v => ((v / total) * 100).toFixed(1));
 
           const chartData = {
             labels: options,
             datasets: [
               {
-                label: '% of Votes',
-                data: percentages,
+                label: 'Number of Votes',
+                data: votes,
                 backgroundColor: ['#4CAF50', '#F44336', '#2196F3', '#FF9800', '#9C27B0', '#607D8B'],
                 borderWidth: 1,
               },
@@ -163,9 +162,8 @@ const PollResults = () => {
             scales: {
               y: {
                 beginAtZero: true,
-                max: 100,
                 ticks: {
-                  callback: (value) => `${value}%`,
+                  callback: (value) => `${value}`,
                 },
               },
             },

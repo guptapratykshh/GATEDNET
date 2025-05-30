@@ -27,9 +27,9 @@ module.exports = {
   jwtSecret: process.env.JWT_SECRET || 'your-secret-key',
   clientUrl: process.env.CLIENT_URL || 'http://localhost:3000',
   firebaseConfig: {
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    privateKey: process.env.FIREBASE_PRIVATE_KEY && process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    clientEmail: process.env.FIREBASE_CLIENT_EMAIL
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    privateKey: process.env.REACT_APP_FIREBASE_PRIVATE_KEY && process.env.REACT_APP_FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    clientEmail: process.env.REACT_APP_FIREBASE_CLIENT_EMAIL
   },
   email: {
     service: process.env.EMAIL_SERVICE || 'gmail',

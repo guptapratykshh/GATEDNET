@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { refreshToken } from '../utils/auth';
 import '../styles/Maintenance.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Use port 7000 for backend
 const BASE_URL = 'http://localhost:7000';
@@ -102,6 +104,31 @@ const UpdateTask = () => {
     }
   };
 
+  // Function to handle deleting a task
+  const handleDeleteTask = async (id) => {
+    if (window.confirm('Are you sure you want to delete this task?')) {
+      try {
+        let token = localStorage.getItem('admin_id_token');
+        if (!token) {
+          toast.error('Authentication required');
+          return;
+        }
+
+        await axios.delete(`${BASE_URL}/api/tasks/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        toast.success('Task deleted successfully!');
+        // Remove the deleted task from the state
+        setTasks(tasks.filter(task => task._id !== id));
+      } catch (err) {
+        console.error('Error deleting task:', err);
+        toast.error('Failed to delete task.');
+      }
+    }
+  };
+
   if (loading) return <p className="maintenance-container">Loading tasks...</p>;
   if (error) return <p className="maintenance-container">Error: {error}</p>;
   if (tasks.length === 0) return <p className="maintenance-container">No tasks found to update.</p>;
@@ -115,6 +142,7 @@ const UpdateTask = () => {
             <th>Task Name</th>
             <th>Status</th>
             <th>Update Status</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -129,10 +157,19 @@ const UpdateTask = () => {
                   <option value="completed">Completed</option>
                 </select>
               </td>
+              <td>
+                <button 
+                  onClick={() => handleDeleteTask(task._id)} 
+                  className="delete-task-button"
+                >
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <ToastContainer position="top-center" autoClose={3000} />
     </div>
   );
 };

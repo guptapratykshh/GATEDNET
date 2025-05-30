@@ -93,7 +93,7 @@ exports.deleteTask = async (req, res) => {
             return res.status(404).json({ message: 'Task not found' });
         }
         
-        await task.remove();
+        await task.deleteOne();
         res.json({ message: 'Task deleted successfully' });
     } catch (error) {
         res.status(500).json({ message: error.message });
