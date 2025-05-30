@@ -2,7 +2,7 @@ import heroImg from '../assets/img.png';
 
 const HeroSection = () => {
   const handleAdminClick = () => {
-    alert('Admin button clicked!');
+     window.open('https://ademin-f.vercel.app/admin/login', '_blank');
   };
   const handleUserClick = () => {
     window.open('https://gatednet.vercel.app/', '_blank');
